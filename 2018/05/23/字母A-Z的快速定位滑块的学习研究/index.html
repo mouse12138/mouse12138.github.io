@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="实习时遇到这么一个需求的更改，把一个带字母快速定位的滑块的listview，将其中的滑块显示全部字母a-z改成listview中数据有哪些，就只显示有数据的字母。在网上搜索了一下这个自定义view的实现，发现和项目中实现的代码基本一致，好吧，原来也是从网上百度到直接复制下来的，汗~　　 结合项目中的代码和网上的资料，我自己学习分析了一下这个自定义sidebar的实现。先贴上源码,源码参考自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/字母A-Z的快速定位滑块的学习研究/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="实习时遇到这么一个需求的更改，把一个带字母快速定位的滑块的listview，将其中的滑块显示全部字母a-z改成listview中数据有哪些，就只显示有数据的字母。在网上搜索了一下这个自定义view的实现，发现和项目中实现的代码基本一致，好吧，原来也是从网上百度到直接复制下来的，汗~　　 结合项目中的代码和网上的资料，我自己学习分析了一下这个自定义sidebar的实现。先贴上源码,源码参考自">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20160418130452854">
+<meta property="og:updated_time" content="2018-05-23T01:39:25.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:description" content="实习时遇到这么一个需求的更改，把一个带字母快速定位的滑块的listview，将其中的滑块显示全部字母a-z改成listview中数据有哪些，就只显示有数据的字母。在网上搜索了一下这个自定义view的实现，发现和项目中实现的代码基本一致，好吧，原来也是从网上百度到直接复制下来的，汗~　　 结合项目中的代码和网上的资料，我自己学习分析了一下这个自定义sidebar的实现。先贴上源码,源码参考自">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160418130452854">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/字母A-Z的快速定位滑块的学习研究/"/>
+
+
+
+
+
+  <title> | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/字母A-Z的快速定位滑块的学习研究/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:45+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　<img src="http://img.blog.csdn.net/20160418130452854" alt="这里写图片描述"><br>　　实习时遇到这么一个需求的更改，把一个带字母快速定位的滑块的listview，将其中的滑块显示全部字母a-z改成listview中数据有哪些，就只显示有数据的字母。在网上搜索了一下这个自定义view的实现，发现和项目中实现的代码基本一致，好吧，原来也是从网上百度到直接复制下来的，汗~<br>　　 结合项目中的代码和网上的资料，我自己学习分析了一下这个自定义sidebar的实现。先贴上源码,源码参考自：<br>　　 <a href="http://blog.csdn.net/woaieillen/article/details/12712137" target="_blank" rel="noopener">http://blog.csdn.net/woaieillen/article/details/12712137</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">public class SideBar extends View &#123;</span><br><span class="line">	// 触摸事件</span><br><span class="line">	private OnTouchingLetterChangedListener onTouchingLetterChangedListener;</span><br><span class="line">	// 26个字母</span><br><span class="line">	public static String[] b = &#123; &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;,</span><br><span class="line">			&quot;J&quot;, &quot;K&quot;, &quot;L&quot;, &quot;M&quot;, &quot;N&quot;, &quot;O&quot;, &quot;P&quot;, &quot;Q&quot;, &quot;R&quot;, &quot;S&quot;, &quot;T&quot;, &quot;U&quot;, &quot;V&quot;,</span><br><span class="line">			&quot;W&quot;, &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;, &quot;#&quot; &#125;;</span><br><span class="line">	private int choose = -1;// 选中</span><br><span class="line">	private Paint paint = new Paint();</span><br><span class="line"></span><br><span class="line">	private TextView mTextDialog;</span><br><span class="line"></span><br><span class="line">	public void setTextView(TextView mTextDialog) &#123;</span><br><span class="line">		this.mTextDialog = mTextDialog;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public SideBar(Context context, AttributeSet attrs, int defStyle) &#123;</span><br><span class="line">		super(context, attrs, defStyle);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public SideBar(Context context, AttributeSet attrs) &#123;</span><br><span class="line">		super(context, attrs);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public SideBar(Context context) &#123;</span><br><span class="line">		super(context);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 重写这个方法</span><br><span class="line">	 */</span><br><span class="line">	protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">		super.onDraw(canvas);</span><br><span class="line">		// 获取焦点改变背景颜色.</span><br><span class="line">		int height = getHeight();// 获取对应高度</span><br><span class="line">		int width = getWidth(); // 获取对应宽度</span><br><span class="line">		int singleHeight = height / b.length;// 获取每一个字母的高度</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; b.length; i++) &#123;</span><br><span class="line">			paint.setColor(Color.rgb(33, 65, 98));</span><br><span class="line">			// paint.setColor(Color.WHITE);</span><br><span class="line">			paint.setTypeface(Typeface.DEFAULT_BOLD);</span><br><span class="line">			paint.setAntiAlias(true);</span><br><span class="line">			paint.setTextSize(20);</span><br><span class="line">			// 选中的状态</span><br><span class="line">			if (i == choose) &#123;</span><br><span class="line">				paint.setColor(Color.parseColor(&quot;#3399ff&quot;));</span><br><span class="line">				paint.setFakeBoldText(true);</span><br><span class="line">			&#125;</span><br><span class="line">			// x坐标等于中间-字符串宽度的一半.</span><br><span class="line">			float xPos = width / 2 - paint.measureText(b[i]) / 2;</span><br><span class="line">			float yPos = singleHeight * i + singleHeight;</span><br><span class="line">			canvas.drawText(b[i], xPos, yPos, paint);</span><br><span class="line">			paint.reset();// 重置画笔</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public boolean dispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">		final int action = event.getAction();</span><br><span class="line">		final float y = event.getY();// 点击y坐标</span><br><span class="line">		final int oldChoose = choose;</span><br><span class="line">		final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;</span><br><span class="line">		final int c = (int) (y / getHeight() * b.length);// 点击y坐标所占总高度的比例*b数组的长度就等于点击b中的个数.</span><br><span class="line"></span><br><span class="line">		switch (action) &#123;</span><br><span class="line">		case MotionEvent.ACTION_UP:</span><br><span class="line">			setBackgroundDrawable(new ColorDrawable(0x00000000));</span><br><span class="line">			choose = -1;//</span><br><span class="line">			invalidate();</span><br><span class="line">			if (mTextDialog != null) &#123;</span><br><span class="line">				mTextDialog.setVisibility(View.INVISIBLE);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line"></span><br><span class="line">		default:</span><br><span class="line">			setBackgroundResource(R.drawable.sidebar_background);</span><br><span class="line">			if (oldChoose != c) &#123;</span><br><span class="line">				if (c &gt;= 0 &amp;&amp; c &lt; b.length) &#123;</span><br><span class="line">					if (listener != null) &#123;</span><br><span class="line">						listener.onTouchingLetterChanged(b[c]);</span><br><span class="line">					&#125;</span><br><span class="line">					if (mTextDialog != null) &#123;</span><br><span class="line">						mTextDialog.setText(b[c]);</span><br><span class="line">						mTextDialog.setVisibility(View.VISIBLE);</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">					choose = c;</span><br><span class="line">					invalidate();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 向外公开的方法</span><br><span class="line">	 * </span><br><span class="line">	 * @param onTouchingLetterChangedListener</span><br><span class="line">	 */</span><br><span class="line">	public void setOnTouchingLetterChangedListener(</span><br><span class="line">			OnTouchingLetterChangedListener onTouchingLetterChangedListener) &#123;</span><br><span class="line">		this.onTouchingLetterChangedListener = onTouchingLetterChangedListener;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 接口</span><br><span class="line">	 * </span><br><span class="line">	 * @author coder</span><br><span class="line">	 * </span><br><span class="line">	 */</span><br><span class="line">	public interface OnTouchingLetterChangedListener &#123;</span><br><span class="line">		public void onTouchingLetterChanged(String s);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　很容易看出这个自定义重写了onDraw方法，在方法里绘制了定义好的包含a-z的字母数组。我要完成我的需求，只需要获取到listview里包含的所有item的字母数据，然后做一下去除相同字母的过滤，把得到的字母传给sidebar然后再重新绘制一下就可以了。所以我在其中添加了一个方法setLetters(String[] letters)传入一个String数组，然后将传入的数组赋给绘制的数组，调用invalidate()方法重新绘制就可以了。<br>　　在完成任务之后，我继续研究了下这个自定义的view的具体绘制过程和事件的处理。正好复习下之前看的《Android群英传》里讲的事件传递机制和view绘制过程原理。<br>　　在onDraw()方法里先获取到控件的宽度和高度，然后根据需要绘制的字母个数获得每个字母的高度，初始化画笔paint设置画笔相关参数，计算绘制的x，y坐标的位置，循环字母数组绘制每个字母，如果是处于choose状态，修改画笔颜色并加粗。<br>　　关于事件的处理，在事件拦截方法dispatchTouchEvent中，获取到事件，并根据触摸的位置坐标计算出是哪一个字母位置，在根据事件类型ACTION_UP，触摸离开时，修改view的背景资源为透明，调用invalidate重新绘制，将中间的TextDialog设置为不可见。其他时候修改背景资源，再根据触摸选中的位置设置TextDialog的文字内容和可见，完成监听回调，重新绘制view。<br>    　看都看到这里了就把这个Demo看完吧，到MainActivity.java中，看看这个带特殊的listview是怎么实现的。<br>    　在initView()方法里，首先实例化了一个汉字转化拼音的类对象和一个按照拼音排序的比较器。
+    　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//实例化汉字转拼音类</span><br><span class="line">characterParser = CharacterParser.getInstance();</span><br><span class="line">//比较器	</span><br><span class="line">pinyinComparator = new PinyinComparator();</span><br></pre></td></tr></table></figure>
+<pre><code>　
+</code></pre><p>　　<br>　　然后设置sidebar的触摸监听事件，根据触摸的字母位置快速定位到listview中该字母首次出现的位置。<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//设置右侧触摸监听</span><br><span class="line">		sideBar.setOnTouchingLetterChangedListener(new OnTouchingLetterChangedListener() &#123;</span><br><span class="line">			</span><br><span class="line">			@Override</span><br><span class="line">			public void onTouchingLetterChanged(String s) &#123;</span><br><span class="line">				//该字母首次出现的位置</span><br><span class="line">				int position = adapter.getPositionForSection(s.charAt(0));</span><br><span class="line">				if(position != -1)&#123;</span><br><span class="line">					sortListView.setSelection(position);</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>　　接下来listview的监听很简单，就是弹出一个吐司，filledData（）方法是从资源文件里读取填充listview的数据，其中用到了characterParser，把数据封装成SortModel对象，存储到一个SourceDateList集合中，并用pinyinComparator进行排序后，初始化了一个SortAdapter，为这个listview设置适配器和数据。最后就是对上方搜索框的设置，初始化mClearEditText后，设置addTextChangedListener监听，根据输入内容调用filterData()方法，过滤数据并更新ListView。
+　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//根据输入框输入值的改变来过滤搜索</span><br><span class="line">		mClearEditText.addTextChangedListener(new TextWatcher() &#123;</span><br><span class="line">			</span><br><span class="line">			@Override</span><br><span class="line">			public void onTextChanged(CharSequence s, int start, int before, int count) &#123;</span><br><span class="line">				//当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表</span><br><span class="line">				filterData(s.toString());</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			@Override</span><br><span class="line">			public void beforeTextChanged(CharSequence s, int start, int count,</span><br><span class="line">					int after) &#123;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			@Override</span><br><span class="line">			public void afterTextChanged(Editable s) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">private void filterData(String filterStr)&#123;</span><br><span class="line">		List&lt;SortModel&gt; filterDateList = new ArrayList&lt;SortModel&gt;();</span><br><span class="line">		</span><br><span class="line">		if(TextUtils.isEmpty(filterStr))&#123;</span><br><span class="line">			filterDateList = SourceDateList;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			filterDateList.clear();</span><br><span class="line">			for(SortModel sortModel : SourceDateList)&#123;</span><br><span class="line">				String name = sortModel.getName();</span><br><span class="line">				if(name.indexOf(filterStr.toString()) != -1 || characterParser.getSelling(name).startsWith(filterStr.toString()))&#123;</span><br><span class="line">					filterDateList.add(sortModel);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		// 根据a-z进行排序</span><br><span class="line">		Collections.sort(filterDateList, pinyinComparator);</span><br><span class="line">		adapter.updateListView(filterDateList);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>　　至此看来，想知道listview的实现，就得去看SortAdapter里是怎么设置数据item的了。在getView()方法里对每个item进行设置，调用getSectionForPosition()和getPositionForSection()这两个方法来获取某个字母第一次出现位置来控制tvLetter就是那个显示字母的TextView显示或隐藏。关于getSectionForPosition()和getPositionForSection()这两个方法，是因为SortAdaoter继承了SectionIndexer接口必须实现的，getSectionForPosition（）通过该项的位置，获得所在分类组的索引号，getPositionForSection() 根据分类列的索引号获得该序列的首个位置，这两个方法这里<a href="http://blog.csdn.net/jack_l1/article/details/14165291" target="_blank" rel="noopener">http://blog.csdn.net/jack_l1/article/details/14165291</a>写的很清楚了，一看就懂。
+　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * 根据ListView的当前位置获取分类的首字母的Char ascii值</span><br><span class="line">	 */</span><br><span class="line">	public int getSectionForPosition(int position) &#123;</span><br><span class="line">		return list.get(position).getSortLetters().charAt(0);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 根据分类的首字母的Char ascii值获取其第一次出现该首字母的位置</span><br><span class="line">	 */</span><br><span class="line">	public int getPositionForSection(int section) &#123;</span><br><span class="line">		for (int i = 0; i &lt; getCount(); i++) &#123;</span><br><span class="line">			String sortStr = list.get(i).getSortLetters();</span><br><span class="line">			char firstChar = sortStr.toUpperCase().charAt(0);</span><br><span class="line">			if (firstChar == section) &#123;</span><br><span class="line">				return i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>　　知道这两个方法后，再看getView里的代码就很清晰了，每次先获取当前位置的selection值，根据selection值获取这个值第一次出现的位置，如果和当前位置一样就显示tvLetter可见并设置tvLetter上的字母，如果不是第一次就把tvLetter隐藏。
+　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public View getView(final int position, View view, ViewGroup arg2) &#123;</span><br><span class="line">		ViewHolder viewHolder = null;</span><br><span class="line">		final SortModel mContent = list.get(position);</span><br><span class="line">		if (view == null) &#123;</span><br><span class="line">			viewHolder = new ViewHolder();</span><br><span class="line">			view = LayoutInflater.from(mContext).inflate(R.layout.item, null);</span><br><span class="line">			viewHolder.tvTitle = (TextView) view.findViewById(R.id.title);</span><br><span class="line">			viewHolder.tvLetter = (TextView) view.findViewById(R.id.catalog);</span><br><span class="line">			view.setTag(viewHolder);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			viewHolder = (ViewHolder) view.getTag();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//根据position获取分类的首字母的Char ascii值</span><br><span class="line">		int section = getSectionForPosition(position);</span><br><span class="line">		</span><br><span class="line">		//如果当前位置等于该分类首字母的Char的位置 ，则认为是第一次出现</span><br><span class="line">		if(position == getPositionForSection(section))&#123;</span><br><span class="line">			viewHolder.tvLetter.setVisibility(View.VISIBLE);</span><br><span class="line">			viewHolder.tvLetter.setText(mContent.getSortLetters());</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			viewHolder.tvLetter.setVisibility(View.GONE);</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		viewHolder.tvTitle.setText(this.list.get(position).getName());</span><br><span class="line">		</span><br><span class="line">		return view;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	final static class ViewHolder &#123;</span><br><span class="line">		TextView tvLetter;</span><br><span class="line">		TextView tvTitle;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>　　</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/自己写的一个带indicator的viewpager/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/2D绘图基础/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

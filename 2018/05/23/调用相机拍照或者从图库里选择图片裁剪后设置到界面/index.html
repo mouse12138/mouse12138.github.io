@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="拍照或者从相册中挑选图片设置头像是很常见的功能。同样是网上搜索了资料，知道了可以调用系统的功能实现，然后就试着开始写了。先是布局文件，就是一个ImageView和一个TextView。1234567891011121314151617181920212223242526&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/调用相机拍照或者从图库里选择图片裁剪后设置到界面/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="拍照或者从相册中挑选图片设置头像是很常见的功能。同样是网上搜索了资料，知道了可以调用系统的功能实现，然后就试着开始写了。先是布局文件，就是一个ImageView和一个TextView。1234567891011121314151617181920212223242526&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;g">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20160511155016994">
+<meta property="og:image" content="http://img.blog.csdn.net/20160511153736753">
+<meta property="og:updated_time" content="2018-05-23T01:36:44.160Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:description" content="拍照或者从相册中挑选图片设置头像是很常见的功能。同样是网上搜索了资料，知道了可以调用系统的功能实现，然后就试着开始写了。先是布局文件，就是一个ImageView和一个TextView。1234567891011121314151617181920212223242526&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;g">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160511155016994">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/调用相机拍照或者从图库里选择图片裁剪后设置到界面/"/>
+
+
+
+
+
+  <title> | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/调用相机拍照或者从图库里选择图片裁剪后设置到界面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:46+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://img.blog.csdn.net/20160511155016994" alt="这里写图片描述"><br>　<br>　　拍照或者从相册中挑选图片设置头像是很常见的功能。同样是网上搜索了资料，知道了可以调用系统的功能实现，然后就试着开始写了。先是布局文件，就是一个ImageView和一个TextView。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.MainActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:layout_width=&quot;200dp&quot;</span><br><span class="line">        android:layout_height=&quot;200dp&quot;</span><br><span class="line">        android:id=&quot;@+id/imageView&quot;</span><br><span class="line">        android:background=&quot;@mipmap/ic_launcher&quot;</span><br><span class="line">        android:layout_alignParentTop=&quot;true&quot;</span><br><span class="line">        android:layout_centerHorizontal=&quot;true&quot;</span><br><span class="line">        android:layout_marginTop=&quot;151dp&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;点击修改头像&quot;</span><br><span class="line">        android:textSize=&quot;25sp&quot;</span><br><span class="line">        android:id=&quot;@+id/textView&quot;</span><br><span class="line">        android:layout_marginTop=&quot;108dp&quot;</span><br><span class="line">        android:layout_alignParentTop=&quot;true&quot;</span><br><span class="line">        android:layout_centerHorizontal=&quot;true&quot; /&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure></p>
+<p>MainActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line">package com.sy.myphoto;</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.app.AlertDialog;</span><br><span class="line">import android.content.DialogInterface;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.SharedPreferences;</span><br><span class="line">import android.graphics.Bitmap;</span><br><span class="line">import android.graphics.BitmapFactory;</span><br><span class="line">import android.graphics.drawable.BitmapDrawable;</span><br><span class="line">import android.graphics.drawable.Drawable;</span><br><span class="line">import android.net.Uri;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.os.Environment;</span><br><span class="line">import android.provider.MediaStore;</span><br><span class="line">import android.text.TextUtils;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import android.widget.RadioButton;</span><br><span class="line">import android.widget.RadioGroup;</span><br><span class="line"></span><br><span class="line">import java.io.ByteArrayOutputStream;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    private ImageView iv;</span><br><span class="line">    private View view;</span><br><span class="line">    private RadioGroup group;</span><br><span class="line">    private RadioButton rb_camera;</span><br><span class="line">    private RadioButton rb_photo;</span><br><span class="line"></span><br><span class="line">    private String SDCardPath = Environment.getExternalStorageDirectory().getAbsolutePath();//sd卡路径</span><br><span class="line"></span><br><span class="line">    private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照</span><br><span class="line">    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择</span><br><span class="line">    private static final int PHOTO_REQUEST_CUT = 3;// 结果</span><br><span class="line">    private AlertDialog.Builder builder;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        initView();//初始化控件</span><br><span class="line">        initEvent();//初始化事件</span><br><span class="line">        setImage();//如果有设置过头像，set上之前的头像</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 从SharedPreferences里读取图片名称，从缓存中读取图片，设置图片，如果没有保存过就什么也不做</span><br><span class="line">     */</span><br><span class="line">    private void setImage() &#123;</span><br><span class="line">        SharedPreferences sp = getSharedPreferences(&quot;imageName&quot;, MODE_PRIVATE);</span><br><span class="line">        String imageName = sp.getString(&quot;name&quot;, &quot;&quot;);</span><br><span class="line">        if (TextUtils.isEmpty(imageName)) &#123;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            byte[] p = FileUtils.readBytes(SDCardPath + &quot;/imageCache&quot;, imageName);</span><br><span class="line">           if(p!=null)&#123;</span><br><span class="line">               Bitmap bitmap = BitmapFactory.decodeByteArray(p, 0, p.length);</span><br><span class="line">               //设置到界面</span><br><span class="line">               Drawable drawable = new BitmapDrawable(bitmap);</span><br><span class="line">               iv.setBackgroundDrawable(drawable);</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void initEvent() &#123;</span><br><span class="line">        iv.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                //设置一个带items的dialog</span><br><span class="line">                final String[] items = new String[]&#123;&quot;拍照&quot;, &quot;相册&quot;&#125;;</span><br><span class="line">                new AlertDialog.Builder(MainActivity.this).setTitle(&quot;选择&quot;).setItems(items, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">                        // TODO Auto-generated method stub</span><br><span class="line">                        switch (which) &#123;</span><br><span class="line">                            case 0:</span><br><span class="line">                                // 调用系统的拍照功能</span><br><span class="line">                                Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);</span><br><span class="line">                                startActivityForResult(intent1, PHOTO_REQUEST_TAKEPHOTO);</span><br><span class="line">                                break;</span><br><span class="line">                            case 1:</span><br><span class="line">                                //调用系统图库</span><br><span class="line">                                Intent intent2 = new Intent(Intent.ACTION_PICK, null);</span><br><span class="line">                                intent2.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, &quot;image/*&quot;);</span><br><span class="line">                                startActivityForResult(intent2, PHOTO_REQUEST_GALLERY);</span><br><span class="line">                                break;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void initView() &#123;</span><br><span class="line">        iv = (ImageView) findViewById(R.id.imageView);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</span><br><span class="line"></span><br><span class="line">        switch (requestCode) &#123;</span><br><span class="line">            case PHOTO_REQUEST_TAKEPHOTO:// 当选择拍照时调用</span><br><span class="line">                if (data != null)</span><br><span class="line">                    startPhotoZoom(data.getData(), 150);</span><br><span class="line">                break;</span><br><span class="line"></span><br><span class="line">            case PHOTO_REQUEST_GALLERY:// 当选择从本地获取图片时</span><br><span class="line">                // 做非空判断，当我们觉得不满意想重新剪裁的时候便不会报异常</span><br><span class="line">                if (data != null)</span><br><span class="line">                    startPhotoZoom(data.getData(), 150);</span><br><span class="line">                break;</span><br><span class="line">            case PHOTO_REQUEST_CUT:// 返回的结果</span><br><span class="line">                if (data != null)</span><br><span class="line">                    saveAndsetPic(data);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        super.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private void startPhotoZoom(Uri uri, int size) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.android.camera.action.CROP&quot;);</span><br><span class="line">        intent.setDataAndType(uri, &quot;image/*&quot;);</span><br><span class="line">        // crop为true是设置在开启的intent中设置显示的view可以剪裁</span><br><span class="line">        intent.putExtra(&quot;crop&quot;, &quot;true&quot;);</span><br><span class="line"></span><br><span class="line">        // aspectX aspectY 是宽高的比例</span><br><span class="line">        intent.putExtra(&quot;aspectX&quot;, 1);</span><br><span class="line">        intent.putExtra(&quot;aspectY&quot;, 1);</span><br><span class="line"></span><br><span class="line">        // outputX,outputY 是剪裁图片的宽高</span><br><span class="line">        intent.putExtra(&quot;outputX&quot;, size);</span><br><span class="line">        intent.putExtra(&quot;outputY&quot;, size);</span><br><span class="line">        intent.putExtra(&quot;return-data&quot;, true);</span><br><span class="line"></span><br><span class="line">        startActivityForResult(intent, PHOTO_REQUEST_CUT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void saveAndsetPic(Intent picdata) &#123;</span><br><span class="line">        Bundle bundle = picdata.getExtras();</span><br><span class="line">        if (bundle != null) &#123;</span><br><span class="line">            Bitmap photo = bundle.getParcelable(&quot;data&quot;);</span><br><span class="line">            //保存到SD卡</span><br><span class="line">            String imageName = MD5Utils.md5(System.currentTimeMillis() + &quot;&quot;);</span><br><span class="line">            ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">            photo.compress(Bitmap.CompressFormat.PNG, 100, baos);</span><br><span class="line">            byte[] p = baos.toByteArray();</span><br><span class="line">            FileUtils.writeBytes(SDCardPath + &quot;/imageCache&quot;, imageName, p);</span><br><span class="line">            //将图片名字保存带本地</span><br><span class="line">            SharedPreferences sp = getSharedPreferences(&quot;imageName&quot;, MODE_PRIVATE);</span><br><span class="line">            sp.edit().putString(&quot;name&quot;, imageName).commit();</span><br><span class="line"></span><br><span class="line">            //设置到界面</span><br><span class="line">            Drawable drawable = new BitmapDrawable(photo);</span><br><span class="line">            iv.setBackgroundDrawable(drawable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  　　主要就是调用系统相册相机和裁剪的uri，然后通过 startActivityForResult，onActivityResult方法完成的。关于<a href="http://blog.csdn.net/mouse12138/article/details/51303988" target="_blank" rel="noopener"><strong>startActivityForResult</strong></a> 之前我有学过。在onActivityResult方法里根据requestCode的不同判断进行裁剪还是设置界面。在裁剪方法startPhotoZoom里，设置intent的附加参数的解释如下：<br>  　　<img src="http://img.blog.csdn.net/20160511153736753" alt="这里写图片描述"><br>　　<br>  　　在saveAndsetPic方法里，除了设置界面，我把裁剪好的图片保存到本地SD卡上，然后为了方便以时间戳md5加密作为图片名字存到了SharedPreferences里。下次打开时先检查SharedPreferences里有没有存过名字，有的话就从缓存图片中读取出来设置到界面。
+  　</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/使用CrashHandler获取crash信息/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/透明状态栏和透明导航栏/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

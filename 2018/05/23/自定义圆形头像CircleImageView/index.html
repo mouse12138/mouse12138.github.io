@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="圆形头像很常用功能，于是想自己写个自定义的圆形的view。搜索了一下，android中可以通过BitmapShader实现这个效果。  　　BitmapShader是Shader的子类，可以通过Paint.setShader（Shader shader）进行设置、 　　这里我们只关注BitmapShader，构造方法： 　　bitmapShader = new BitmapShader(bit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/自定义圆形头像CircleImageView/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="圆形头像很常用功能，于是想自己写个自定义的圆形的view。搜索了一下，android中可以通过BitmapShader实现这个效果。  　　BitmapShader是Shader的子类，可以通过Paint.setShader（Shader shader）进行设置、 　　这里我们只关注BitmapShader，构造方法： 　　bitmapShader = new BitmapShader(bit">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://img.blog.csdn.net/20160516150649436">
+<meta property="og:updated_time" content="2018-05-23T01:36:01.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:description" content="圆形头像很常用功能，于是想自己写个自定义的圆形的view。搜索了一下，android中可以通过BitmapShader实现这个效果。  　　BitmapShader是Shader的子类，可以通过Paint.setShader（Shader shader）进行设置、 　　这里我们只关注BitmapShader，构造方法： 　　bitmapShader = new BitmapShader(bit">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160516150649436">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/自定义圆形头像CircleImageView/"/>
+
+
+
+
+
+  <title> | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/自定义圆形头像CircleImageView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:45+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　圆形头像很常用功能，于是想自己写个自定义的圆形的view。搜索了一下，android中可以通过BitmapShader实现这个效果。</p>
+<p><img src="http://img.blog.csdn.net/20160516150649436" alt="这里写图片描述"></p>
+<p>　　BitmapShader是Shader的子类，可以通过Paint.setShader（Shader shader）进行设置、</p>
+<p>　　这里我们只关注BitmapShader，构造方法：</p>
+<p>　　bitmapShader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);</p>
+<p>　　参数1：bitmap</p>
+<p>　　参数2，参数3：TileMode；</p>
+<p>　　TileMode的取值有三种：</p>
+<p>　　CLAMP 拉伸</p>
+<p>　　REPEAT 重复</p>
+<p>　　MIRROR 镜像</p>
+<p>　　如果大家给电脑屏幕设置屏保的时候，如果图片太小，可以选择重复、拉伸、镜像；</p>
+<p>　　重复：就是横向、纵向不断重复这个bitmap</p>
+<p>　　镜像：横向不断翻转重复，纵向不断翻转重复；</p>
+<p>　　拉伸：这个和电脑屏保的模式应该有些不同，这个拉伸的是图片最后的那一个像素；横向的最后一个横行像素，不断的重复，纵项的那一列像素，不断的重复；</p>
+<p>首先现在values下新建attrs.xml，自定义属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;declare-styleable name=&quot;CircleImageView&quot;&gt;</span><br><span class="line">        &lt;attr name=&quot;mborder_color&quot; format=&quot;color&quot;&gt;&lt;/attr&gt;</span><br><span class="line">        &lt;attr name=&quot;mborder_width&quot; format=&quot;dimension&quot;&gt;&lt;/attr&gt;</span><br><span class="line">        &lt;attr name=&quot;msrc&quot; format=&quot;reference&quot;&gt;&lt;/attr&gt;</span><br><span class="line">    &lt;/declare-styleable&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<p>CircleImageView.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line">package com.sy.callme.view;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.res.TypedArray;</span><br><span class="line">import android.graphics.Bitmap;</span><br><span class="line">import android.graphics.BitmapShader;</span><br><span class="line">import android.graphics.Canvas;</span><br><span class="line">import android.graphics.Paint;</span><br><span class="line">import android.graphics.Shader;</span><br><span class="line">import android.graphics.drawable.BitmapDrawable;</span><br><span class="line">import android.graphics.drawable.Drawable;</span><br><span class="line">import android.util.AttributeSet;</span><br><span class="line">import android.view.View;</span><br><span class="line"></span><br><span class="line">import com.sy.callme.R;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by SY on 2016/5/16.</span><br><span class="line"> */</span><br><span class="line">public class CircleImageView extends View &#123;</span><br><span class="line">    private Bitmap bitmap;</span><br><span class="line">    private int borderWidth;</span><br><span class="line">    private Drawable drawable;</span><br><span class="line">    private int borderColor;</span><br><span class="line">    private int width;</span><br><span class="line">    private int height;</span><br><span class="line">    private Bitmap src;</span><br><span class="line">    private BitmapShader shader;</span><br><span class="line">    private Paint paint;</span><br><span class="line">    private int radius;</span><br><span class="line">    private int circleX;</span><br><span class="line">    private int circleY;</span><br><span class="line">    private Paint borderPaint;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public CircleImageView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public CircleImageView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        //获取自定义属性</span><br><span class="line">        TypedArray type = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView);</span><br><span class="line">        borderColor = type.getColor(R.styleable.CircleImageView_mborder_color, 0);</span><br><span class="line">        borderWidth = type.getDimensionPixelSize(R.styleable.CircleImageView_mborder_width, 2);</span><br><span class="line">        drawable = type.getDrawable(R.styleable.CircleImageView_msrc);</span><br><span class="line">        //转换为bitmap</span><br><span class="line">        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;</span><br><span class="line">        bitmap = bitmapDrawable.getBitmap();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int measureHeight(int heightMeasureSpec) &#123;</span><br><span class="line">        int size = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line">        int sizeMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        int result = 0;</span><br><span class="line">        if (sizeMode == MeasureSpec.EXACTLY) &#123;</span><br><span class="line">            //如果是精确尺寸就直接返回结果</span><br><span class="line">            result = size;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //不是就尺寸设置最大为200</span><br><span class="line">            result = 200;</span><br><span class="line">            if (sizeMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">                //如果是最大尺寸就返回实际尺寸和最大尺寸之中较小的</span><br><span class="line">                result = Math.min(result, size);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int measureWidth(int widthMeasureSpec) &#123;</span><br><span class="line">        int size = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line">        int sizeMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        int result = 0;</span><br><span class="line">        if (sizeMode == MeasureSpec.EXACTLY) &#123;</span><br><span class="line">            //如果是精确尺寸就直接返回结果</span><br><span class="line">            result = size;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //如果是精确尺寸就直接返回结果</span><br><span class="line">            result = 200;</span><br><span class="line">            if (sizeMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">                //如果是最大尺寸就返回实际尺寸和最大尺寸之中较小的</span><br><span class="line">                result = Math.min(result, size);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">        super.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        width = measureWidth(widthMeasureSpec);</span><br><span class="line">        height = measureHeight(heightMeasureSpec);</span><br><span class="line">        width = height = Math.min(width, height);</span><br><span class="line">        initView();//初始化画笔参数</span><br><span class="line">        setMeasuredDimension(width, height);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">        super.onDraw(canvas);</span><br><span class="line">        canvas.drawCircle(circleX, circleY, radius, paint);</span><br><span class="line">        canvas.drawCircle(circleX, circleY, radius, borderPaint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void initView() &#123;</span><br><span class="line"></span><br><span class="line">        src = Bitmap.createScaledBitmap(bitmap, width, height, true);</span><br><span class="line">        shader = new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);</span><br><span class="line">        paint = new Paint();</span><br><span class="line">        paint.setShader(shader);//设置shader</span><br><span class="line">        radius = (width - borderWidth * 2) / 2;</span><br><span class="line">        circleX = (width) / 2;</span><br><span class="line">        circleY = (height) / 2;</span><br><span class="line"></span><br><span class="line">        borderPaint = new Paint();</span><br><span class="line">        borderPaint.setStyle(Paint.Style.STROKE);</span><br><span class="line">        borderPaint.setStrokeWidth(borderWidth);</span><br><span class="line">        borderPaint.setColor(borderColor);</span><br><span class="line">        borderPaint.setStrokeJoin(Paint.Join.ROUND);//接合处的圆滑</span><br><span class="line">        borderPaint.setStrokeCap(Paint.Cap.ROUND);//圆角的笔触</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setImageResoure(Drawable drawable) &#123;</span><br><span class="line">        //转换为bitmap</span><br><span class="line">        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;</span><br><span class="line">        bitmap = bitmapDrawable.getBitmap();</span><br><span class="line">        shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);</span><br><span class="line">        paint = new Paint();</span><br><span class="line">        paint.setShader(shader);</span><br><span class="line">        requestLayout();</span><br><span class="line">        invalidate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　首先获取自定义属性的值，然后在onMeasure方法里获得控件宽高，initView方法里设置画笔的参数，创建BitmapShader并给paint设置shader。最后在onDraw方法里绘制就可以了。具体使用：
+　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.sy.callme.view.CircleImageView</span><br><span class="line">        android:id=&quot;@+id/c_image&quot;</span><br><span class="line">        android:layout_width=&quot;80dp&quot;</span><br><span class="line">        android:layout_height=&quot;80dp&quot;</span><br><span class="line">        android:layout_marginTop=&quot;20dp&quot;</span><br><span class="line">        android:layout_gravity=&quot;center_horizontal&quot;</span><br><span class="line">        app:mborder_color=&quot;#ff7700&quot;</span><br><span class="line">        app:mborder_width=&quot;3dp&quot;</span><br><span class="line">        app:msrc=&quot;@mipmap/touxiang&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>记得使用自定义view的自定义属性需要在布局文件中引入<code>xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</code></p>
+<p>参考资料：<a href="http://www.android100.org/html/201406/07/20422.html" target="_blank" rel="noopener">Android自定义属性时TypedArray的使用方法</a><br>　　　　　<a href="http://www.cnblogs.com/snake-hand/archive/2012/02/17/2454394.html" target="_blank" rel="noopener">Android学习笔记进阶15之Shader渲染</a><br>　　　　　 <a href="http://blog.csdn.net/sjf0115/article/details/7267532" target="_blank" rel="noopener">Android学习笔记进阶16之BitmapShader</a><br>　　　　　 <a href="http://www.tuicool.com/articles/YbAFjeM" target="_blank" rel="noopener">详解Paint的各种set方法</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/自定义动画Animation/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/自己写的一个带indicator的viewpager/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

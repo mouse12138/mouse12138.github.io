@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="图片的三级缓存 1、优先从内存中加载图片, 速度最快, 不浪费流量 2、其次从本地(sdcard)加载图片, 速度快, 不浪费流量 3、最后从网络下载图片, 速度慢, 浪费流量 XUtils中的BitmapUtils 等开源框架中底层都做了图片的三级缓存。 接下来，我们试着自己写一个类似于BitmapUtils 图片三级缓存工具类。 MyBitmapUtils.java /**  * 自定义三级缓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/Android图片的三级缓存和AsyncTask的使用的研究学习/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="图片的三级缓存 1、优先从内存中加载图片, 速度最快, 不浪费流量 2、其次从本地(sdcard)加载图片, 速度快, 不浪费流量 3、最后从网络下载图片, 速度慢, 浪费流量 XUtils中的BitmapUtils 等开源框架中底层都做了图片的三级缓存。 接下来，我们试着自己写一个类似于BitmapUtils 图片三级缓存工具类。 MyBitmapUtils.java /**  * 自定义三级缓">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-23T06:29:10.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:description" content="图片的三级缓存 1、优先从内存中加载图片, 速度最快, 不浪费流量 2、其次从本地(sdcard)加载图片, 速度快, 不浪费流量 3、最后从网络下载图片, 速度慢, 浪费流量 XUtils中的BitmapUtils 等开源框架中底层都做了图片的三级缓存。 接下来，我们试着自己写一个类似于BitmapUtils 图片三级缓存工具类。 MyBitmapUtils.java /**  * 自定义三级缓">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/Android图片的三级缓存和AsyncTask的使用的研究学习/"/>
+
+
+
+
+
+  <title> | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/Android图片的三级缓存和AsyncTask的使用的研究学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:45+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>图片的三级缓存</p>
+<p>1、优先从内存中加载图片, 速度最快, 不浪费流量</p>
+<p>2、其次从本地(sdcard)加载图片, 速度快, 不浪费流量</p>
+<p>3、最后从网络下载图片, 速度慢, 浪费流量</p>
+<p>XUtils中的BitmapUtils 等开源框架中底层都做了图片的三级缓存。</p>
+<p>接下来，我们试着自己写一个类似于BitmapUtils 图片三级缓存工具类。</p>
+<p>MyBitmapUtils.java</p>
+<pre><code>/**
+ * 自定义三级缓存图片加载工具
+  * 
+    */
+public class MyBitmapUtils {
+private NetCacheUtils mNetCacheUtils;//网络缓存工具类
+private LocalCacheUtils mLocalCacheUtils;//本地缓存工具类
+private MemoryCacheUtils mMemoryCacheUtils;
+
+public MyBitmapUtils() {
+    mMemoryCacheUtils = new MemoryCacheUtils();
+    mLocalCacheUtils = new LocalCacheUtils();
+    mNetCacheUtils = new NetCacheUtils(mLocalCacheUtils, mMemoryCacheUtils);
+}
+
+public void display(ImageView imageView, String url) {
+    // 设置默认图片
+    imageView.setImageResource(R.drawable.pic_item_list_default);
+
+    // 优先从内存中加载图片, 速度最快, 不浪费流量
+    Bitmap bitmap = mMemoryCacheUtils.getMemoryCache(url);
+    if (bitmap != null) {
+        imageView.setImageBitmap(bitmap);
+        System.out.println(&quot;从内存加载图片啦&quot;);
+        return;
+    }
+
+    // 其次从本地(sdcard)加载图片, 速度快, 不浪费流量
+    bitmap = mLocalCacheUtils.getLocalCache(url);
+    if (bitmap != null) {
+        imageView.setImageBitmap(bitmap);
+        System.out.println(&quot;从本地加载图片啦&quot;);
+
+        // 写内存缓存
+        mMemoryCacheUtils.setMemoryCache(url, bitmap);
+        return;
+    }
+
+    // 最后从网络下载图片, 速度慢, 浪费流量
+    mNetCacheUtils.getBitmapFromNet(imageView, url);
+}
+</code></pre><p>}</p>
+<p>NetCacheUtils.java</p>
+<p>网络缓存类<br>其中用了AsyncTask异步访问网络请求</p>
+<pre><code>/**
+  * 网络缓存
+ * 
+    */
+public class NetCacheUtils {
+
+private LocalCacheUtils mLocalCacheUtils;
+private MemoryCacheUtils mMemoryCacheUtils;
+
+public NetCacheUtils(LocalCacheUtils localCacheUtils,
+        MemoryCacheUtils memoryCacheUtils) {
+    mLocalCacheUtils = localCacheUtils;
+    mMemoryCacheUtils = memoryCacheUtils;
+}
+
+public void getBitmapFromNet(ImageView imageView, String url) {
+    // AsyncTask 异步封装的工具, 可以实现异步请求及主界面更新(对线程池+handler的封装)
+    new BitmapTask().execute(imageView, url);// 启动AsyncTask
+}
+
+/**
+ * 三个泛型意义: 第一个泛型:doInBackground里的参数类型 
+ * 第二个泛型:  onProgressUpdate里的参数类型
+ * 第三个泛型:  onPostExecute里的参数类型及doInBackground的返回类型
+ * 
+ */
+class BitmapTask extends AsyncTask&lt;Object, Integer, Bitmap&gt; {
+
+    private ImageView imageView;
+    private String url;
+
+    // 1.预加载, 运行在主线程
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        // System.out.println(&quot;onPreExecute&quot;);
+    }
+
+    // 2.正在加载, 运行在子线程(核心方法), 可以直接异步请求
+    @Override
+    protected Bitmap doInBackground(Object... params) {
+        // System.out.println(&quot;doInBackground&quot;);
+        imageView = (ImageView) params[0];
+        url = (String) params[1];
+
+        imageView.setTag(url);// 打标记, 将当前imageview和url绑定在了一起
+
+        // 开始下载图片
+        Bitmap bitmap = download(url);
+        // publishProgress(values) 调用此方法实现进度更新(会回调onProgressUpdate)
+
+        return bitmap;
+    }
+
+    // 3.更新进度的方法, 运行在主线程
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        // 更新进度条
+        super.onProgressUpdate(values);
+    }
+
+    // 4.加载结束, 运行在主线程(核心方法), 可以直接更新UI
+    @Override
+    protected void onPostExecute(Bitmap result) {
+        // System.out.println(&quot;onPostExecute&quot;);
+
+        if (result != null) {
+            // 给imageView设置图片
+            // 由于listview的重用机制导致imageview对象可能被多个item共用,
+            // 从而可能将错误的图片设置给了imageView对象
+            // 所以需要在此处校验, 判断是否是正确的图片
+            String url = (String) imageView.getTag();
+
+            if (url.equals(this.url)) {// 判断图片绑定的url是否就是当前bitmap的url                                                                               // 如果是,说明图片正确
+                imageView.setImageBitmap(result);
+                System.out.println(&quot;从网络加载图片啦!!!&quot;);
+
+                // 写本地缓存
+                mLocalCacheUtils.setLocalCache(url, result);
+                // 写内存缓存
+                mMemoryCacheUtils.setMemoryCache(url, result);
+            }
+        }
+        super.onPostExecute(result);
+    }
+}
+// 下载图片
+public Bitmap download(String url) {
+    HttpURLConnection conn = null;
+    try {
+        conn = (HttpURLConnection) new URL(url).openConnection();
+
+        conn.setRequestMethod(&quot;GET&quot;);
+        conn.setConnectTimeout(5000);// 连接超时
+        conn.setReadTimeout(5000);// 读取超时
+
+        conn.connect();
+
+        int responseCode = conn.getResponseCode();
+
+        if (responseCode == 200) {
+            InputStream inputStream = conn.getInputStream();
+
+            // 根据输入流生成bitmap对象
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+            return bitmap;
+        }
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if (conn != null) {
+            conn.disconnect();
+        }
+    }
+
+    return null;
+}
+</code></pre><p>}</p>
+<p>LocalCacheUtils.java </p>
+<p>本地缓存类</p>
+<p>   /**</p>
+<pre><code> * 本地缓存
+ */
+public class LocalCacheUtils {
+
+private static final String LOCAL_CACHE_PATH = Environment
+        .getExternalStorageDirectory().getAbsolutePath() + &quot;/image_cache&quot;;
+
+// 写本地缓存
+public void setLocalCache(String url, Bitmap bitmap) {
+    File dir = new File(LOCAL_CACHE_PATH);
+    if (!dir.exists() || !dir.isDirectory()) {
+        dir.mkdirs();// 创建文件夹
+    }
+
+    try {
+        String fileName = MD5Encoder.encode(url);
+
+        File cacheFile = new File(dir, fileName);
+
+        bitmap.compress(CompressFormat.JPEG, 100, new FileOutputStream(
+            cacheFile));// 参数1:图片格式;参数2:压缩比例0-100; 参数3:输出流
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+// 读本地缓存
+public Bitmap getLocalCache(String url) {
+    try {
+        File cacheFile = new File(LOCAL_CACHE_PATH, MD5Encoder.encode(url));
+
+        if (cacheFile.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(
+                    cacheFile));
+            return bitmap;
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+</code></pre><p>}</p>
+<p>MemoryCacheUtils.java  内存缓存类</p>
+<pre><code>    /**
+       * 内存缓存
+      */
+public class MemoryCacheUtils {
+
+private HashMap&lt;String, Bitmap&gt; mMemoryCache = new HashMap&lt;String,Bitmap&gt;();
+
+/**
+ * 写缓存
+ */
+public void setMemoryCache(String url, Bitmap bitmap) {    
+    mMemoryCache.put(url, bitmap);
+}
+
+/**
+ * 读缓存
+ */
+public Bitmap getMemoryCache(String url) {
+
+    return mMemoryCache.get(url);
+}
+</code></pre><p>}</p>
+<p>但是由于不管android设备总内存是多大, 都只给每个app分配一定内存大小, 16M, 一旦超出16M就内存溢出了。所以内存缓存图片数量过多就会OOM。于是尝试采用软引用SoftReference修改内存缓存类，修改如下：</p>
+<pre><code>/**
+ * 内存缓存
+  */
+public class MemoryCacheUtils {
+private HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt; mMemoryCache = new HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();
+/**
+ * 写缓存
+ */
+public void setMemoryCache(String url, Bitmap bitmap) {
+     SoftReference&lt;Bitmap&gt; soft = new SoftReference&lt;Bitmap&gt;(bitmap);//
+    // 使用软引用将bitmap包装起来
+     mMemoryCache.put(url, soft);    
+}
+
+/**
+ * 读缓存
+ */
+public Bitmap getMemoryCache(String url) {
+     SoftReference&lt;Bitmap&gt; softReference = mMemoryCache.get(url);
+
+     if (softReference != null) {
+     Bitmap bitmap = softReference.get();
+     return bitmap;
+     }
+    return null;
+}
+</code></pre><p>}</p>
+<p>tip：</p>
+<ul>
+<li>默认强引用, 垃圾回收器不会回收</li>
+<li>软引用, 垃圾回收器会考虑回收 SoftReference</li>
+<li>弱引用, 垃圾回收器更会考虑回收 WeakReference</li>
+<li>虚引用, 垃圾回收器最优先回收 PhantomReference</li>
+</ul>
+<p>但是又因为从 Android 2.3 (API Level 9)开始，垃圾回收器会更倾向于回收持有软引用或弱引用的对象，这让软引用和弱引用变得不再可靠。Google建议使用LruCache。</p>
+<p>下面这个是官方文档的截图：</p>
+<p>所以再次修改喽~</p>
+<p>修改如下：</p>
+<pre><code>/**
+   * 内存缓存
+   * 因为从 Android 2.3 (API Level 9)开始，垃圾回收器会更倾向于    回收持有软引用或弱引用的对象，这让 
+
+   * 软引用和弱引用变得不再可靠。Google建议使用LruCache
+  */
+public class MemoryCacheUtils {
+
+// private HashMap&lt;String, Bitmap&gt; mMemoryCache = new HashMap&lt;String,
+// Bitmap&gt;();
+// private HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt; mMemoryCache = new
+// HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();
+
+private LruCache&lt;String, Bitmap&gt; mMemoryCache;
+
+public MemoryCacheUtils() {
+    // LruCache 可以将最近最少使用的对象回收掉, 从而保证内存不会超出范围
+    // Lru: least recentlly used 最近最少使用算法
+    long maxMemory = Runtime.getRuntime().maxMemory();// 获取分配给app的内存大小
+    System.out.println(&quot;maxMemory:&quot; + maxMemory);
+
+    mMemoryCache = new LruCache&lt;String, Bitmap&gt;((int) (maxMemory / 8)) {
+
+        // 返回每个对象的大小
+        @Override
+        protected int sizeOf(String key, Bitmap value) {
+            // int byteCount = value.getByteCount();
+            int byteCount = value.getRowBytes() * value.getHeight();// 计算图片大小:每行字节数*高度
+            return byteCount;
+        }
+    };
+}
+
+/**
+ * 写缓存
+ */
+public void setMemoryCache(String url, Bitmap bitmap) {
+    // mMemoryCache.put(url, bitmap);
+    // SoftReference&lt;Bitmap&gt; soft = new SoftReference&lt;Bitmap&gt;(bitmap);//
+    // 使用软引用将bitmap包装起来
+    // mMemoryCache.put(url, soft);
+    mMemoryCache.put(url, bitmap);
+}
+
+/**
+ * 读缓存
+ */
+public Bitmap getMemoryCache(String url) {
+    // SoftReference&lt;Bitmap&gt; softReference = mMemoryCache.get(url);
+    //
+    // if (softReference != null) {
+    // Bitmap bitmap = softReference.get();
+    // return bitmap;
+    // }
+    return mMemoryCache.get(url);
+}
+</code></pre><p>}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/Android属性动画(ObjectAnimator、PropertyValuesHolder、ValueAnimator、AnimatorSet)/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/android学习记录2（日志、上下文、android下数据存储、xml基础）/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

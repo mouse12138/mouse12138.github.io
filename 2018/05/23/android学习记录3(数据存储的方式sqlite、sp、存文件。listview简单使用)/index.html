@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#数据存储的方式  存文件 一般的数据   sharedperference  设置信息，配置信息，密码   数据库 相同的结构的数据，大量存储，增删改查。    ##Sqlite  开源的，嵌入式的数据库，轻量级。  ##数据库的创建  文件的创建 //引用，如果文件不存在是不会被创建 File file = new File(&amp;quot;haha.txt&amp;quot;); //输出流写数据，文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/android学习记录3(数据存储的方式sqlite、sp、存文件。listview简单使用)/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="#数据存储的方式  存文件 一般的数据   sharedperference  设置信息，配置信息，密码   数据库 相同的结构的数据，大量存储，增删改查。    ##Sqlite  开源的，嵌入式的数据库，轻量级。  ##数据库的创建  文件的创建 //引用，如果文件不存在是不会被创建 File file = new File(&amp;quot;haha.txt&amp;quot;); //输出流写数据，文件">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-23T06:23:19.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:description" content="#数据存储的方式  存文件 一般的数据   sharedperference  设置信息，配置信息，密码   数据库 相同的结构的数据，大量存储，增删改查。    ##Sqlite  开源的，嵌入式的数据库，轻量级。  ##数据库的创建  文件的创建 //引用，如果文件不存在是不会被创建 File file = new File(&amp;quot;haha.txt&amp;quot;); //输出流写数据，文件">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/android学习记录3(数据存储的方式sqlite、sp、存文件。listview简单使用)/"/>
+
+
+
+
+
+  <title> | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/android学习记录3(数据存储的方式sqlite、sp、存文件。listview简单使用)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:45+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#数据存储的方式</p>
+<ol>
+<li>存文件<blockquote>
+<p>一般的数据</p>
+</blockquote>
+</li>
+<li>sharedperference <blockquote>
+<p>设置信息，配置信息，密码</p>
+</blockquote>
+</li>
+<li>数据库<blockquote>
+<p>相同的结构的数据，大量存储，增删改查。</p>
+</blockquote>
+</li>
+</ol>
+<p>##Sqlite</p>
+<blockquote>
+<p>开源的，嵌入式的数据库，轻量级。</p>
+</blockquote>
+<p>##数据库的创建</p>
+<ol>
+<li><p>文件的创建</p>
+<pre><code>//引用，如果文件不存在是不会被创建
+File file = new File(&quot;haha.txt&quot;);
+//输出流写数据，文件才被创建
+FileOutputStream fos = new FileOutputStream(file);
+fos.write(&quot;&quot;.getBytes());
+fos.close();
+</code></pre></li>
+<li><p>数据库的创建</p>
+<pre><code> //执行下面的一行代码，数据库是不会别创建的了。
+MyDBOpenHelper helper = new MyDBOpenHelper(this);
+//如果想创建数据库必须执行,下一行代码
+helper.getWritableDatabase();
+</code></pre></li>
+</ol>
+<p>##数据库的操作</p>
+<ul>
+<li>增<blockquote>
+<p>insert into info (name,phone) values (‘lisi’,’120’)</p>
+</blockquote>
+</li>
+<li>删<blockquote>
+<p> delete from info where _id = ‘2’</p>
+</blockquote>
+</li>
+<li>改<blockquote>
+<p>update info set phone=’999’ where name=’zhangsan’</p>
+</blockquote>
+</li>
+<li><p>查</p>
+<blockquote>
+<p>select * from info where _id=’1’</p>
+</blockquote>
+</li>
+<li><p>API的增删改查（推荐使用）</p>
+</li>
+</ul>
+<p>##ListView </p>
+<blockquote>
+<p>解决大量的相似的数据显示的问题。<br>MVC：<br>M: modle 数据模型       50000个textview<br>V: view 显示的视图      xml–listview<br>C: controller 控制器    控制器，控制textview如何显示</p>
+</blockquote>
+<p>默认实现类</p>
+<ul>
+<li>BaseXXX</li>
+<li>BasicXXX</li>
+<li>SimpleXXX</li>
+<li>DefaultXXX</li>
+</ul>
+<p>##listview的编写方法</p>
+<ol>
+<li>xml布局文件 声明listview的控件</li>
+</ol>
+<ol start="2">
+<li>在代码里面查找listview<pre><code>findViewById（R.id.lv);
+</code></pre></li>
+<li>设置listview的数据适配器<pre><code>lv.setAdapter(new MyAdapter());
+</code></pre></li>
+<li>编写数据适配器<pre><code>private class MyAdapter extends BaseAdapter{ 
+    public int getCount() {
+        return ...;//告诉listview里面有多少条数据
+    }
+public View getView(int position, View convertView, ViewGroup parent) {
+        return ...;//返回每个位置显示的view是什么样子的。
+    }
+}
+</code></pre></li>
+</ol>
+<p>##常见的数据适配器</p>
+<ul>
+<li>ArrayAdapter 数组适配器</li>
+</ul>
+<p>##两种动画</p>
+<ul>
+<li>frame animation 帧动画</li>
+<li>view动画</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/android学习记录2（日志、上下文、android下数据存储、xml基础）/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/Animation视图动画/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

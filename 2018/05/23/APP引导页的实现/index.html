@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="画了好久布局，终于让我写一个引导页的功能。难度不大，同样是记录下来，方便复习。 首先是布局文件，用viewpager实现的页面滑动。 &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;RelativeLayout xmlns:android=&amp;quot;http://schemas.android.com/ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/APP引导页的实现/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="画了好久布局，终于让我写一个引导页的功能。难度不大，同样是记录下来，方便复习。 首先是布局文件，用viewpager实现的页面滑动。 &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;RelativeLayout xmlns:android=&amp;quot;http://schemas.android.com/ap">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-23T06:37:07.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:description" content="画了好久布局，终于让我写一个引导页的功能。难度不大，同样是记录下来，方便复习。 首先是布局文件，用viewpager实现的页面滑动。 &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;RelativeLayout xmlns:android=&amp;quot;http://schemas.android.com/ap">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/APP引导页的实现/"/>
+
+
+
+
+
+  <title> | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/APP引导页的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:46+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>画了好久布局，终于让我写一个引导页的功能。难度不大，同样是记录下来，方便复习。</p>
+<p>首先是布局文件，用viewpager实现的页面滑动。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;match_parent&quot; &gt;
+
+&lt;android.support.v4.view.ViewPager
+    android:id=&quot;@+id/vp_guide_pages&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; &gt;
+&lt;/android.support.v4.view.ViewPager&gt;
+
+&lt;RelativeLayout
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:layout_alignParentBottom=&quot;true&quot;
+    android:layout_centerHorizontal=&quot;true&quot;
+    android:layout_marginBottom=&quot;30dip&quot; &gt;
+
+    &lt;LinearLayout
+        android:id=&quot;@+id/ll_guide_points&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:orientation=&quot;horizontal&quot; &gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;View
+        android:id=&quot;@+id/v_guide_redpoint&quot;
+        android:layout_width=&quot;10dip&quot;
+        android:layout_height=&quot;10dip&quot;
+        android:background=&quot;@drawable/red_point&quot; /&gt;
+&lt;/RelativeLayout&gt;
+
+&lt;Button
+    android:id=&quot;@+id/bt_guide_startexp&quot;
+    android:background=&quot;#ff0000&quot;
+    android:layout_alignParentBottom=&quot;true&quot;
+    android:layout_centerHorizontal=&quot;true&quot;
+    android:layout_marginBottom=&quot;45dip&quot;
+    android:paddingTop=&quot;5dip&quot;
+    android:paddingBottom=&quot;5dip&quot;
+    android:paddingLeft=&quot;10dip&quot;
+    android:paddingRight=&quot;10dip&quot;
+    android:textColor=&quot;@drawable/btn_colors&quot;
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;开始体验&quot;
+    android:visibility=&quot;gone&quot;
+    android:textSize=&quot;18sp&quot; /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre><p>代码实现</p>
+<pre><code>package com.sy.gudiedemo;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+
+
+public class MainActivity extends Activity {
+
+private ViewPager vp_guids;
+private LinearLayout ll_points;
+private View v_redpoint;
+private Button bt_startExp;
+private ArrayList&lt;ImageView&gt; guids;
+private MyAdapter adapter;
+private int disPoints;//点与点之间的距离
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
+    setContentView(R.layout.activity_main);
+    initView();// 初始化界面
+    initData();// 初始化数据
+    initEvent();// 初始化组件事件
+}
+
+private void initEvent() {
+    //监听布局完成 ，触发的结果
+    v_redpoint.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+        @Override
+        public void onGlobalLayout() {
+            //取消注册 界面变化而发生的回调结果
+            v_redpoint.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+            //计算点与点之间的距离
+            disPoints = (ll_points.getChildAt(1).getLeft() - ll_points.getChildAt(0)
+                    .getLeft());
+        }
+    });
+
+    //给按钮添加点击事件
+    bt_startExp.setOnClickListener(new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            //保存设置的状态
+            //进入主界面
+            //关闭自己
+        }
+    });
+
+    //给ViewPage添加页码改变的事件
+    vp_guids.setOnPageChangeListener(new OnPageChangeListener() {
+
+
+        @Override
+        public void onPageSelected(int position) {
+            //当前ViewPager显示的页码
+            //如果ViewPager滑动到第三个页码(最后一页)，显示button
+            if (position == guids.size() - 1) {
+                bt_startExp.setVisibility(View.VISIBLE);//设置设置按钮的显示
+            } else {
+                //不是最后一页，隐藏该button按钮
+                bt_startExp.setVisibility(View.GONE);
+            }
+        }
+
+        /* (non-Javadoc)
+         * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrolled(int, float, int)
+         * 在页面滑动过程触发的事件
+         * @param position 当前ViewPage停留的位置
+         * @param positionOffset 偏移的比例值
+         * @param positionOffsetPixels 偏移的像素
+         */
+        @Override
+        public void onPageScrolled(int position, float positionOffset,
+                                   int positionOffsetPixels) {
+
+            //positionOffset 移动的比例值
+            //计算红点的左边距
+            float leftMargin = disPoints * (position + positionOffset);
+
+            //设置红点的左边距
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v_redpoint.getLayoutParams();
+            layoutParams.leftMargin = Math.round(leftMargin);//对float类型四舍五入
+
+            //重新设置布局
+            v_redpoint.setLayoutParams(layoutParams);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    });
+}
+
+private void initData() {
+    // viewpaper adapter list
+    // 图片的数据
+    int[] pics = new int[]{R.mipmap.gudie_1, R.mipmap.gudie_2,
+            R.mipmap.gudie_3};
+
+    // 定义Viewpager使用的容器
+
+    guids = new ArrayList&lt;ImageView&gt;();
+
+    // 初始化容器中的数据
+    for (int i = 0; i &lt; pics.length; i++) {
+        ImageView iv_temp = new ImageView(getApplicationContext());
+        iv_temp.setBackgroundResource(pics[i]);
+
+        // 添加界面的数据
+        guids.add(iv_temp);
+
+        // 给点的容器Linearlayout初始化添加灰色点
+        View v_point = new View(getApplicationContext());
+        v_point.setBackgroundResource(R.drawable.gray_point);
+        int dip = 10;
+        // 设置灰色点的大小
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dip2px(getApplicationContext(), dip),
+
+         dip2px(getApplicationContext(), dip));
+        // 设置点与点直接的空隙
+        // 第一个点不需要指定
+        if (i != 0)// 过滤第一个点
+            params.leftMargin = 10;// px
+        v_point.setLayoutParams(params);// 无缝隙的挨一起
+
+        // 添加灰色的点到线性布局中
+        ll_points.addView(v_point);
+    }
+
+    // 界面没有布局前，点的位置是确定不了的，布局完成，再求出点直接的距离
+
+    // 创建ViewPager的适配器
+    adapter = new MyAdapter(guids);
+    // 设置适配器
+    vp_guids.setAdapter(adapter);
+}
+
+private void initView() {
+    // ViewPage组件
+    vp_guids = (ViewPager) findViewById(R.id.vp_guide_pages);
+
+    // 动态加点容器
+    ll_points = (LinearLayout) findViewById(R.id.ll_guide_points);
+
+    // 红点
+    v_redpoint = findViewById(R.id.v_guide_redpoint);
+
+    // 开始体验的按钮
+    bt_startExp = (Button) findViewById(R.id.bt_guide_startexp);
+}
+
+/**
+ * 根据手机的分辨率从 dip 的单位 转成为 px(像素)
+ */
+public static int dip2px(Context context, float dpValue) {
+    final float scale = context.getResources().getDisplayMetrics().density;
+    return (int) (dpValue * scale + 0.5f);
+}
+</code></pre><p>}</p>
+<p>viewpager的适配器</p>
+<pre><code>package com.sy.gudiedemo;
+
+import android.support.v4.view.PagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by SY on 2016/3/26.
+ */
+public class MyAdapter extends PagerAdapter
+{
+
+private List&lt;ImageView&gt; guids;
+MyAdapter(ArrayList&lt;ImageView&gt; list){
+    this.guids = list;
+}
+
+@Override
+public int getCount() {
+
+    return guids.size();// 返回数据的个数
+}
+
+@Override
+public boolean isViewFromObject(View arg0, Object arg1) {
+    return arg0 == arg1;// 过滤和缓存的作用
+}
+
+@Override
+public void destroyItem(ViewGroup container, int position, Object object) {
+
+    container.removeView((View) object);// 从Viewpager中移除
+}
+
+@Override
+public Object instantiateItem(ViewGroup container, int position) {
+    // container viewpaper
+    // 获取View
+    View child = guids.get(position);
+    // 添加View
+    container.addView(child);
+
+    return child;
+}
+
+}
+</code></pre><p>最后是画的小圆点红色和灰色都是一样的</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; 
+android:shape=&quot;oval&quot;&gt;
+
+&lt;corners android:radius=&quot;5dip&quot;&gt;&lt;/corners&gt;
+
+&lt;solid android:color=&quot;#ff0000&quot;&gt;&lt;/solid&gt;
+&lt;/shape&gt;
+</code></pre><p>代码不难，主要方法都有注释，就这样了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/Animation视图动画/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/Cannot merge new index 66195 into a non-jumbo instruction!问题解决/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
