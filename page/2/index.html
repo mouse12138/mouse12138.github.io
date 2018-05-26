@@ -300,9 +300,7 @@
       
         
           
-          自定义View，将他用于布局文件中，在XML作为布局元素来布局的话，必须使用完整路径名，也就是包名加类名来引用，用com.example.lklknbnhh.myview.MyView来进行引用。
-自定义一个View，必须派生实现基类View的三个构造函数
-//Simple constructor 
+          自定义View，将他用于布局文件中，在XML作为布局元素来布局的话，必须使用完整路径名，也就是包名加类名来引用，用com.example.lklknbnhh.myview.MyVi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -428,9 +426,7 @@
       
         
           
-          　　现在很多的APP都是这种ui设计模式，在实际开发中经常使用，所以以前我也写过类似的，但基本都是拿来主义，现在正好又遇到了，也不是很复杂，所以就试着自己写一个。　　首先是Activity的布局代码：
-　　
-1234567891011121314151617181920212223242526272
+          　　现在很多的APP都是这种ui设计模式，在实际开发中经常使用，所以以前我也写过类似的，但基本都是拿来主义，现在正好又遇到了，也不是很复杂，所以就试着自己写一个。　　首先是Acti
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -556,7 +552,7 @@
       
         
           
-          　　实习中遇到了ScrollView里放置一个ListView的情况，照常书写代码测试的时候出现这种情况：　　就是只显示一个item的高度。上网搜索了之后才知道是ScrollView嵌套ListView会无法正确计算高度，导致只显示一个item的高度。　　网上解决的思路也有很多，一种是不要在Scro
+          　　实习中遇到了ScrollView里放置一个ListView的情况，照常书写代码测试的时候出现这种情况：　　就是只显示一个item的高度。上网搜索了之后才知道是ScrollVie
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -682,7 +678,7 @@
       
         
           
-          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061import android.util.Log;/** * Created
+          123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -809,7 +805,7 @@
         
           
           《Android群英传》读书记录
-##1、使用ViewHolder模式提高效率      在Adapter里定义一个内部类ViewHoleder ，将布局中的空间作为成员变量即可。      ……        @Override    public View getView(int positon
+##1、使用ViewHolder模式提高效率      在Adapter里定义一个内部类ViewHoleder ，将布局中的空间作为成员变量即可。
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -935,7 +931,7 @@
       
         
           
-          　　好几天没有写博了，前几天一直在忙毕业答辩，之后还回家了一趟，一直没有写。　　今天实习时候，使用listview的adapter.notifyDataSetChanged(),方法刷新数据时候发现会发生界面闪烁的问题。后来知道了可以在adapter写一个updateView方法来实现一个item的
+          　　好几天没有写博了，前几天一直在忙毕业答辩，之后还回家了一趟，一直没有写。　　今天实习时候，使用listview的adapter.notifyDataSetChanged(),方
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1062,8 +1058,7 @@
         
           
           还是在看《Android群英传》中，书上的例子，自己照着敲，练习一下。图片网上找的，不好看，意思到了就行。    第一个是具有弹性的listview。    
-MyListView.java
-1234567891011121314151617181920212223242526272829publi
+MyListView
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1189,7 +1184,7 @@ MyListView.java
       
         
           
-          ###1、信号量概念       信号量(Semaphore)，有时被称为信号灯，是在多线程环境下使用的一种设施，是可以用来保证两个或多个关键代码段不被并发调用。在进入一个关键代码段之前，线程必须获取一个信号量；一旦该关键代码段完成了，那么该线程必须释放信号量。其它想进入该关键代码段的线程必须等待直
+          ###1、信号量概念       信号量(Semaphore)，有时被称为信号灯，是在多线程环境下使用的一种设施，是可以用来保证两个或多个关键代码段不被并发调用。在进入一个关键代码
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1315,8 +1310,7 @@ MyListView.java
       
         
           
-          问题现象：问题原因：Android系统中，一个Dex文件中存储方法id用的是short类型数据，所以导致你的dex中方法不能超过65536解决方法：Google 官方给出的解决方案是使用 Multidex 。解决步骤：1、修改 build.gradle 文件
-1234defaultConfig &#
+          问题现象：问题原因：Android系统中，一个Dex文件中存储方法id用的是short类型数据，所以导致你的dex中方法不能超过65536解决方法：Google 官方给出的解决方案
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1444,8 +1438,7 @@ MyListView.java
           
           画了好久布局，终于让我写一个引导页的功能。难度不大，同样是记录下来，方便复习。
 首先是布局文件，用viewpager实现的页面滑动。
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout
+&lt;?xml version=&quot;
           ...
           <!--noindex-->
           <div class="post-button text-center">
