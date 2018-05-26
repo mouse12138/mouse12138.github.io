@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtEx">
+<meta name="description" content="title: 使用CrashHandler获取crash信息date:  tags: [Android]####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个写代码的胖子">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/使用CrashHandler获取crash信息/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
-<meta property="og:description" content="####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtEx">
+<meta property="og:description" content="title: 使用CrashHandler获取crash信息date:  tags: [Android]####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20170208224434372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170208224525264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170208224506389?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-05-23T01:33:55.788Z">
+<meta property="og:updated_time" content="2018-05-26T14:17:42.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个写代码的胖子">
-<meta name="twitter:description" content="####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtEx">
+<meta name="twitter:description" content="title: 使用CrashHandler获取crash信息date:  tags: [Android]####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20170208224434372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -303,11 +303,146 @@
       
 
       
-        <p>####1、背景和问题<br>在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。</p>
+        <hr>
+<p>title: 使用CrashHandler获取crash信息<br>date: </p>
+<h2 id="tags-Android"><a href="#tags-Android" class="headerlink" title="tags: [Android]"></a>tags: [Android]</h2><p>####1、背景和问题<br>在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。</p>
 <p>####2、解决方法<br>在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtExceptionHandler。<br>这个方法可以设置系统默认异常处理器。当系统发生crash时，系统会回调setDefaultUncaughtExceptionHandler的uncaughtException方法，在uncaughtException方法中就可以获取到异常信息了，然后就可以选择把信息存到sd卡，之后或者可以将信息上传到服务器。这样开发者就可以获取到crash原因，并在下一个版本中修复。</p>
 <p>####3、代码实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">package com.sy.crashhandlerdemo;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.pm.PackageInfo;</span><br><span class="line">import android.content.pm.PackageManager;</span><br><span class="line">import android.os.Build;</span><br><span class="line">import android.os.Process;</span><br><span class="line">import android.os.Environment;</span><br><span class="line">import android.util.Log;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedWriter;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileWriter;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by SY on 2017/2/8.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class CrashHandler implements Thread.UncaughtExceptionHandler &#123;</span><br><span class="line">    private static final String TAG = &quot;CrashHandler&quot;;</span><br><span class="line">    private static final boolean DEBUG = true;</span><br><span class="line"></span><br><span class="line">    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + &quot;/CrashTest/log/&quot;;</span><br><span class="line">    private static final String FILE_NAME = &quot;crash&quot;;</span><br><span class="line">    private static final String FILE_NAME_SUFFIX = &quot;.trace&quot;;</span><br><span class="line"></span><br><span class="line">    private static CrashHandler sInstance = new CrashHandler();</span><br><span class="line">    private Thread.UncaughtExceptionHandler mDefaultCrashHandler;</span><br><span class="line">    private Context mContext;</span><br><span class="line"></span><br><span class="line">    private CrashHandler() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static CrashHandler getInstance() &#123;</span><br><span class="line">        return sInstance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void init(Context context) &#123;</span><br><span class="line">        mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();</span><br><span class="line">        Thread.setDefaultUncaughtExceptionHandler(this);</span><br><span class="line">        mContext = context.getApplicationContext();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 这个是最关键的函数，当程序中有未被捕获的异常，系统将会自动调用#uncaughtException方法</span><br><span class="line">     * thread为出现未捕获异常的线程，ex为未捕获的异常，有了这个ex，我们就可以得到异常信息。</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void uncaughtException(Thread thread, Throwable ex) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //导出异常信息到SD卡中</span><br><span class="line">            dumpExceptionToSDCard(ex);</span><br><span class="line">            uploadExceptionToServer();</span><br><span class="line">            //这里可以通过网络上传异常信息到服务器，便于开发人员分析日志从而解决bug</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ex.printStackTrace();</span><br><span class="line"></span><br><span class="line">        //如果系统提供了默认的异常处理器，则交给系统去结束我们的程序，否则就由我们自己结束自己</span><br><span class="line">        if (mDefaultCrashHandler != null) &#123;</span><br><span class="line">            mDefaultCrashHandler.uncaughtException(thread, ex);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Process.killProcess(Process.myPid());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dumpExceptionToSDCard(Throwable ex) throws IOException &#123;</span><br><span class="line">        //如果SD卡不存在或无法使用，则无法把异常信息写入SD卡</span><br><span class="line">        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">            if (DEBUG) &#123;</span><br><span class="line">                Log.w(TAG, &quot;sdcard unmounted,skip dump exception&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        File dir = new File(PATH);</span><br><span class="line">        if (!dir.exists()) &#123;</span><br><span class="line">            dir.mkdirs();</span><br><span class="line">        &#125;</span><br><span class="line">        long current = System.currentTimeMillis();</span><br><span class="line">        String time = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(new Date(current));</span><br><span class="line">        File file = new File(PATH + FILE_NAME + time + FILE_NAME_SUFFIX);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));</span><br><span class="line">            pw.println(time);</span><br><span class="line">            dumpPhoneInfo(pw);</span><br><span class="line">            pw.println();</span><br><span class="line">            ex.printStackTrace(pw);</span><br><span class="line">            pw.close();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            Log.e(TAG, &quot;dump crash info failed&quot;+e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dumpPhoneInfo(PrintWriter pw) throws PackageManager.NameNotFoundException &#123;</span><br><span class="line">        PackageManager pm = mContext.getPackageManager();</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), PackageManager.GET_ACTIVITIES);</span><br><span class="line">        pw.print(&quot;App Version: &quot;);</span><br><span class="line">        pw.print(pi.versionName);</span><br><span class="line">        pw.print(&apos;_&apos;);</span><br><span class="line">        pw.println(pi.versionCode);</span><br><span class="line"></span><br><span class="line">        //android版本号</span><br><span class="line">        pw.print(&quot;OS Version: &quot;);</span><br><span class="line">        pw.print(Build.VERSION.RELEASE);</span><br><span class="line">        pw.print(&quot;_&quot;);</span><br><span class="line">        pw.println(Build.VERSION.SDK_INT);</span><br><span class="line"></span><br><span class="line">        //手机制造商</span><br><span class="line">        pw.print(&quot;Vendor: &quot;);</span><br><span class="line">        pw.println(Build.MANUFACTURER);</span><br><span class="line"></span><br><span class="line">        //手机型号</span><br><span class="line">        pw.print(&quot;Model: &quot;);</span><br><span class="line">        pw.println(Build.MODEL);</span><br><span class="line"></span><br><span class="line">        //cpu架构</span><br><span class="line">        pw.print(&quot;CPU ABI: &quot;);</span><br><span class="line">        pw.println(Build.CPU_ABI);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void uploadExceptionToServer() &#123;</span><br><span class="line">        //TODO Upload Exception Message To Your Web Server</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>写一个CrashHandler实现UncaughtExceptionHandler，然后在<br>uncaghtException这个方法里获取异常信息存储到sd卡里或者上传到服务器。<br>接着先写一个init方法，调用系统的setDefaultUncaughtExceptionHandler方法设置默认异常处理器就可以了。</p>
+<pre><code>package com.sy.crashhandlerdemo;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Process;
+import android.os.Environment;
+import android.util.Log;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+/**
+ * Created by SY on 2017/2/8.
+ */
+
+public class CrashHandler implements Thread.UncaughtExceptionHandler {
+private static final String TAG = &quot;CrashHandler&quot;;
+private static final boolean DEBUG = true;
+
+private static final String PATH = Environment.getExternalStorageDirectory().getPath() + &quot;/CrashTest/log/&quot;;
+private static final String FILE_NAME = &quot;crash&quot;;
+private static final String FILE_NAME_SUFFIX = &quot;.trace&quot;;
+
+private static CrashHandler sInstance = new CrashHandler();
+private Thread.UncaughtExceptionHandler mDefaultCrashHandler;
+private Context mContext;
+
+private CrashHandler() {
+}
+
+public static CrashHandler getInstance() {
+    return sInstance;
+}
+
+public void init(Context context) {
+    mDefaultCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
+    Thread.setDefaultUncaughtExceptionHandler(this);
+    mContext = context.getApplicationContext();
+}
+
+/**
+ * 这个是最关键的函数，当程序中有未被捕获的异常，系统将会自动调用#uncaughtException方法
+ * thread为出现未捕获异常的线程，ex为未捕获的异常，有了这个ex，我们就可以得到异常信息。
+ */
+@Override
+public void uncaughtException(Thread thread, Throwable ex) {
+    try {
+        //导出异常信息到SD卡中
+        dumpExceptionToSDCard(ex);
+        uploadExceptionToServer();
+        //这里可以通过网络上传异常信息到服务器，便于开发人员分析日志从而解决bug
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    ex.printStackTrace();
+
+    //如果系统提供了默认的异常处理器，则交给系统去结束我们的程序，否则就由我们自己结束自己
+    if (mDefaultCrashHandler != null) {
+        mDefaultCrashHandler.uncaughtException(thread, ex);
+    } else {
+        Process.killProcess(Process.myPid());
+    }
+
+}
+
+private void dumpExceptionToSDCard(Throwable ex) throws IOException {
+    //如果SD卡不存在或无法使用，则无法把异常信息写入SD卡
+    if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+        if (DEBUG) {
+            Log.w(TAG, &quot;sdcard unmounted,skip dump exception&quot;);
+            return;
+        }
+    }
+
+    File dir = new File(PATH);
+    if (!dir.exists()) {
+        dir.mkdirs();
+    }
+    long current = System.currentTimeMillis();
+    String time = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(new Date(current));
+    File file = new File(PATH + FILE_NAME + time + FILE_NAME_SUFFIX);
+
+    try {
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+        pw.println(time);
+        dumpPhoneInfo(pw);
+        pw.println();
+        ex.printStackTrace(pw);
+        pw.close();
+    } catch (Exception e) {
+        Log.e(TAG, &quot;dump crash info failed&quot;+e.getMessage());
+    }
+}
+
+private void dumpPhoneInfo(PrintWriter pw) throws PackageManager.NameNotFoundException {
+    PackageManager pm = mContext.getPackageManager();
+    PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), PackageManager.GET_ACTIVITIES);
+    pw.print(&quot;App Version: &quot;);
+    pw.print(pi.versionName);
+    pw.print(&apos;_&apos;);
+    pw.println(pi.versionCode);
+
+    //android版本号
+    pw.print(&quot;OS Version: &quot;);
+    pw.print(Build.VERSION.RELEASE);
+    pw.print(&quot;_&quot;);
+    pw.println(Build.VERSION.SDK_INT);
+
+    //手机制造商
+    pw.print(&quot;Vendor: &quot;);
+    pw.println(Build.MANUFACTURER);
+
+    //手机型号
+    pw.print(&quot;Model: &quot;);
+    pw.println(Build.MODEL);
+
+    //cpu架构
+    pw.print(&quot;CPU ABI: &quot;);
+    pw.println(Build.CPU_ABI);
+}
+
+private void uploadExceptionToServer() {
+    //TODO Upload Exception Message To Your Web Server
+}
+}
+</code></pre><p>写一个CrashHandler实现UncaughtExceptionHandler，然后在<br>uncaghtException这个方法里获取异常信息存储到sd卡里或者上传到服务器。<br>接着先写一个init方法，调用系统的setDefaultUncaughtExceptionHandler方法设置默认异常处理器就可以了。</p>
 <p>####4、使用方法<br>想要在项目中使用，只要在application启动时加入如下代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CrashHandler crashHandler = CrashHandler.getInstance();</span><br><span class="line">crashHandler.init(this);</span><br></pre></td></tr></table></figure>
 <p>####5、测试Demo<br>这个demo很简单了，就是几个按钮，每个按钮一个异常，然后用自己实现的CrashHandler捕获存储异常信息。</p>
@@ -339,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/23/利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/05/23/利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘/" rel="next" title="利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘">
+                <i class="fa fa-chevron-left"></i> 利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘
               </a>
             
           </div>
@@ -349,8 +484,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/调用相机拍照或者从图库里选择图片裁剪后设置到界面/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/调用相机拍照或者从图库里选择图片裁剪后设置到界面/" rel="prev" title="调用相机拍照或者从图库里选择图片裁剪后设置到界面">
+                调用相机拍照或者从图库里选择图片裁剪后设置到界面 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -403,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -423,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -431,6 +575,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
@@ -450,6 +603,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-Android"><span class="nav-number">1.</span> <span class="nav-text">tags: [Android]</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

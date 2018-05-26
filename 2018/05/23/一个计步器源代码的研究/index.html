@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在看完之前一篇文章后，我又找到以下这篇文章，这篇里包含了一个计步器的源代码，我觉得自己来研究一下。 一个稳定好用的android计步器源代码  作为一个新手，看别人代码只能一步步慢慢研究摸索，先看了工程的AndroidManifest.xml，具体代码如下： &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;m">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个计步器源代码的研究">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/一个计步器源代码的研究/index.html">
+<meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="在看完之前一篇文章后，我又找到以下这篇文章，这篇里包含了一个计步器的源代码，我觉得自己来研究一下。 一个稳定好用的android计步器源代码  作为一个新手，看别人代码只能一步步慢慢研究摸索，先看了工程的AndroidManifest.xml，具体代码如下： &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;m">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-26T14:19:25.686Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个计步器源代码的研究">
+<meta name="twitter:description" content="在看完之前一篇文章后，我又找到以下这篇文章，这篇里包含了一个计步器的源代码，我觉得自己来研究一下。 一个稳定好用的android计步器源代码  作为一个新手，看别人代码只能一步步慢慢研究摸索，先看了工程的AndroidManifest.xml，具体代码如下： &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;m">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/一个计步器源代码的研究/"/>
+
+
+
+
+
+  <title>一个计步器源代码的研究 | 一个写代码的胖子</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一个写代码的胖子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archives"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/一个计步器源代码的研究/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mouse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个计步器源代码的研究</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T21:27:46+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在看完之前一篇文章后，我又找到以下这篇文章，这篇里包含了一个计步器的源代码，我觉得自己来研究一下。</p>
+<p><a href="http://blog.csdn.net/xf396191344/article/details/50467570" target="_blank" rel="noopener"><br>一个稳定好用的android计步器源代码</a></p>
+<p> 作为一个新手，看别人代码只能一步步慢慢研究摸索，先看了工程的AndroidManifest.xml，具体代码如下：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+package=&quot;com.base.basepedo&quot;&gt;
+
+&lt;uses-permission android:name=&quot;android.permission.WAKE_LOCK&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_SETTINGS&quot; /&gt;
+&lt;uses-feature android:name=&quot;android.hardware.sensor.accelerometer&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;/&gt;
+
+&lt;application
+    android:allowBackup=&quot;true&quot;
+    android:icon=&quot;@mipmap/ic_launcher&quot;
+    android:label=&quot;@string/app_name&quot;
+    android:supportsRtl=&quot;true&quot;
+    android:theme=&quot;@style/AppTheme&quot;&gt;
+
+    &lt;activity android:name=&quot;.ui.MainActivity&quot;&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+            &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+
+    &lt;service
+        android:name=&quot;com.base.basepedo.service.StepService&quot;
+        android:process=&quot;com.base.basepedo.step&quot;
+        android:priority=&quot;1000&quot;&gt;
+        &lt;intent-filter &gt;
+            &lt;!-- 系统启动完成后会调用--&gt;
+            &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot;/&gt;
+            &lt;action android:name=&quot;android.intent.action.DATE_CHANGED&quot;/&gt;
+            &lt;action android:name=&quot;android.intent.action.MEDIA_MOUNTED&quot; /&gt;
+            &lt;action android:name=&quot;android.intent.action.USER_PRESENT&quot; /&gt;
+            &lt;action android:name=&quot;android.intent.action.ACTION_TIME_TICK&quot; /&gt;
+            &lt;action android:name=&quot;android.intent.action.ACTION_POWER_CONNECTED&quot; /&gt;
+            &lt;action android:name=&quot;android.intent.action.ACTION_POWER_DISCONNECTED&quot; /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/service&gt;
+&lt;/application&gt;
+</code></pre><p></p>
+<p>这里面除了需要用到的权限之外，只有一个MainActivity和一个StepService的注册。既然是从MainActivity进入，那么就先看MainActivity的内容。在MainActivity里先看onCreate方法。</p>
+<pre><code> @Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    init();
+    setupService();
+}
+
+  private void init() {
+    text_step = (TextView) findViewById(R.id.text_step);
+    delayHandler = new Handler(this);
+}
+</code></pre><p>   private void setupService() {<br>        Intent intent = new Intent(this, StepService.class);<br>        bindService(intent, conn, Context.BIND_AUTO_CREATE);<br>        startService(intent);<br>    }</p>
+<p>在MainActivity里除了设置布局调用了init()和 setupService()两个方法。init方法中实例化了一个handler，然后在setupService方法里绑定一个服务StepService,就是之前AndroidManifest.xml里看到的那个服务。然后在ServiceConnection的onServiceConnected方法里发送一个消息。消息中msg.replyTo是干什么以前没用过，查阅资料后暂时理解为一个消息管理器，会关联到一个handler，handler就是处理其中的消息。</p>
+<pre><code>  private Messenger mGetReplyMessenger = new Messenger(new Handler(this));
+private Handler delayHandler;
+
+ServiceConnection conn = new ServiceConnection() {
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        try {
+            messenger = new Messenger(service);
+            Message msg = Message.obtain(null, Constant.MSG_FROM_CLIENT);
+            msg.replyTo = mGetReplyMessenger;
+            messenger.send(msg);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
+    }
+};
+</code></pre><p>MainActivity里基本就没有什么其他的内容了，在onBackPressed设置了后退键将Activity置为后台，在onDestory方法里解除服务的绑定。</p>
+<pre><code>@Override
+protected void onResume() {
+    super.onResume();
+}
+
+@Override
+public void onBackPressed() {
+    moveTaskToBack(true);
+    super.onBackPressed();
+}
+
+ @Override
+protected void onDestroy() {
+    super.onDestroy();
+    unbindService(conn);
+}
+</code></pre><p>}</p>
+<p>接下来去看StepService这个服务里到底做了什么。</p>
+<pre><code>package com.base.basepedo.service;
+
+import android.app.Notification;
+import ......
+
+public class StepService extends Service implements SensorEventListener {
+//默认为30秒进行一次存储
+private static int duration = 30000;
+private static String CURRENTDATE = &quot;&quot;;
+private SensorManager sensorManager;
+private StepDcretor stepDetector;
+private NotificationManager nm;
+private NotificationCompat.Builder builder;
+private Messenger messenger = new Messenger(new MessenerHandler());
+private BroadcastReceiver mBatInfoReceiver;
+private WakeLock mWakeLock;
+private TimeCount time;
+
+//测试
+private static int i = 0;
+//计步传感器类型 0-counter 1-detector
+private static int stepSensor = -1;
+
+
+private static class MessenerHandler extends Handler {
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what) {
+            case Constant.MSG_FROM_CLIENT:
+                try {
+                    Messenger messenger = msg.replyTo;
+                    Message replyMsg = Message.obtain(null, Constant.MSG_FROM_SERVER);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(&quot;step&quot;, StepDcretor.CURRENT_SETP);
+                    replyMsg.setData(bundle);
+                    messenger.send(replyMsg);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                super.handleMessage(msg);
+        }
+    }
+}
+
+@Override
+public void onCreate() {
+    super.onCreate();
+    CURRENTDATE = getTodayDate();
+    initBroadcastReceiver();
+    new Thread(new Runnable() {
+        public void run() {
+            startStepDetector();
+        }
+    }).start();
+
+    startTimeCount();
+    initTodayData();
+
+    updateNotification(&quot;今日步数：&quot; + StepDcretor.CURRENT_SETP + &quot; 步&quot;);
+}
+
+private String getTodayDate() {
+    Date date = new Date(System.currentTimeMillis());
+    SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+    return sdf.format(date);
+}
+
+private void initTodayData() {
+    DbUtils.createDb(this, &quot;basepedo&quot;);
+    //获取当天的数据，用于展示
+    List&lt;StepData&gt; list = DbUtils.getQueryByWhere(StepData.class, &quot;today&quot;, new String[]{CURRENTDATE});
+    if (list.size() == 0 || list.isEmpty()) {
+        StepDcretor.CURRENT_SETP = 0;
+    } else if (list.size() == 1) {
+        StepDcretor.CURRENT_SETP = Integer.parseInt(list.get(0).getStep());
+    } else {
+        Log.v(&quot;xf&quot;, &quot;出错了！&quot;);
+    }
+}
+
+private void initBroadcastReceiver() {
+    final IntentFilter filter = new IntentFilter();
+    // 屏幕灭屏广播
+    filter.addAction(Intent.ACTION_SCREEN_OFF);
+    //关机广播
+    filter.addAction(Intent.ACTION_SHUTDOWN);
+    // 屏幕亮屏广播
+    filter.addAction(Intent.ACTION_SCREEN_ON);
+    // 屏幕解锁广播
+    filter.addAction(Intent.ACTION_USER_PRESENT);
+    // 当长按电源键弹出“关机”对话或者锁屏时系统会发出这个广播
+    // example：有时候会用到系统对话框，权限可能很高，会覆盖在锁屏界面或者“关机”对话框之上，
+    // 所以监听这个广播，当收到时就隐藏自己的对话，如点击pad右下角部分弹出的对话框
+    filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+
+    mBatInfoReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            String action = intent.getAction();
+
+            if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                Log.d(&quot;xf&quot;, &quot;screen on&quot;);
+            } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                Log.d(&quot;xf&quot;, &quot;screen off&quot;);
+                //改为60秒一存储
+                duration = 60000;
+            } else if (Intent.ACTION_USER_PRESENT.equals(action)) {
+                Log.d(&quot;xf&quot;, &quot;screen unlock&quot;);
+                save();
+                //改为30秒一存储
+                duration = 30000;
+            } else if (Intent.ACTION_CLOSE_SYSTEM_DIALOGS.equals(intent.getAction())) {
+                Log.i(&quot;xf&quot;, &quot; receive Intent.ACTION_CLOSE_SYSTEM_DIALOGS&quot;);
+                //保存一次
+                save();
+            } else if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
+                Log.i(&quot;xf&quot;, &quot; receive ACTION_SHUTDOWN&quot;);
+                save();
+            }
+        }
+    };
+    registerReceiver(mBatInfoReceiver, filter);
+}
+
+private void startTimeCount() {
+    time = new TimeCount(duration, 1000);
+    time.start();
+}
+
+/**
+ * 更新通知
+ */
+private void updateNotification(String content) {
+    builder = new NotificationCompat.Builder(this);
+    builder.setPriority(Notification.PRIORITY_MIN);
+
+    //Notification.Builder builder = new Notification.Builder(this);
+    PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+            new Intent(this, MainActivity.class), 0);
+    builder.setContentIntent(contentIntent);
+    builder.setSmallIcon(R.mipmap.ic_launcher);
+    builder.setTicker(&quot;BasePedo&quot;);
+    builder.setContentTitle(&quot;BasePedo&quot;);
+    //设置不可清除
+    builder.setOngoing(true);
+    builder.setContentText(content);
+    Notification notification = builder.build();
+
+    startForeground(0, notification);
+
+    nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    nm.notify(R.string.app_name, notification);
+}
+
+@Override
+public IBinder onBind(Intent intent) {
+
+    return messenger.getBinder();
+}
+
+
+@Override
+public void onStart(Intent intent, int startId) {
+    super.onStart(intent, startId);
+}
+
+@Override
+public int onStartCommand(Intent intent, int flags, int startId) {
+    return START_STICKY;
+}
+
+private void startStepDetector() {
+    if (sensorManager != null &amp;&amp; stepDetector != null) {
+        sensorManager.unregisterListener(stepDetector);
+        sensorManager = null;
+        stepDetector = null;
+    }
+    getLock(this);
+    // 获取传感器管理器的实例
+    sensorManager = (SensorManager) this
+            .getSystemService(SENSOR_SERVICE);
+    //android4.4以后可以使用计步传感器
+    int VERSION_CODES = android.os.Build.VERSION.SDK_INT;
+    if (VERSION_CODES &gt;= 19) {
+        addCountStepListener();
+    } else {
+        addBasePedoListener();
+    }
+}
+
+private void addCountStepListener() {
+    Sensor detectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+    Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+    if (countSensor != null) {
+        stepSensor = 0;
+        Log.v(&quot;base&quot;, &quot;countSensor&quot;);
+        sensorManager.registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_UI);
+    } else if (detectorSensor != null) {
+        stepSensor = 1;
+        Log.v(&quot;base&quot;, &quot;detector&quot;);
+        sensorManager.registerListener(StepService.this, detectorSensor, SensorManager.SENSOR_DELAY_UI);
+    } else {
+        Log.v(&quot;xf&quot;, &quot;Count sensor not available!&quot;);
+        addBasePedoListener();
+    }
+}
+
+private void addBasePedoListener() {
+    stepDetector = new StepDcretor(this);
+    // 获得传感器的类型，这里获得的类型是加速度传感器
+    // 此方法用来注册，只有注册过才会生效，参数：SensorEventListener的实例，Sensor的实例，更新速率
+    Sensor sensor = sensorManager
+            .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    // sensorManager.unregisterListener(stepDetector);
+    sensorManager.registerListener(stepDetector, sensor,
+            SensorManager.SENSOR_DELAY_UI);
+    stepDetector
+            .setOnSensorChangeListener(new StepDcretor.OnSensorChangeListener() {
+
+                @Override
+                public void onChange() {
+                    updateNotification(&quot;今日步数：&quot; + StepDcretor.CURRENT_SETP + &quot; 步&quot;);
+                }
+            });
+}
+
+@Override
+public void onSensorChanged(SensorEvent event) {
+    //   i++;
+    if(stepSensor == 0){
+        StepDcretor.CURRENT_SETP = (int)event.values[0];
+    }else if(stepSensor == 1){
+        StepDcretor.CURRENT_SETP++;
+    }
+    updateNotification(&quot;今日步数：&quot; + StepDcretor.CURRENT_SETP + &quot; 步&quot;);
+}
+
+@Override
+public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+}
+
+
+class TimeCount extends CountDownTimer {
+    public TimeCount(long millisInFuture, long countDownInterval) {
+        super(millisInFuture, countDownInterval);
+    }
+
+    @Override
+    public void onFinish() {
+        // 如果计时器正常结束，则开始计步
+        time.cancel();
+        save();
+        startTimeCount();
+    }
+
+    @Override
+    public void onTick(long millisUntilFinished) {
+
+    }
+
+}
+
+private void save() {
+    int tempStep = StepDcretor.CURRENT_SETP;
+
+    List&lt;StepData&gt; list = DbUtils.getQueryByWhere(StepData.class, &quot;today&quot;, new String[]{CURRENTDATE});
+    if (list.size() == 0 || list.isEmpty()) {
+        StepData data = new StepData();
+        data.setToday(CURRENTDATE);
+        data.setStep(tempStep + &quot;&quot;);
+        DbUtils.insert(data);
+    } else if (list.size() == 1) {
+        StepData data = list.get(0);
+        data.setStep(tempStep + &quot;&quot;);
+        DbUtils.update(data);
+    } else {
+    }
+}
+
+
+@Override
+public void onDestroy() {
+    //取消前台进程
+    stopForeground(true);
+    DbUtils.closeDb();
+    unregisterReceiver(mBatInfoReceiver);
+    Intent intent = new Intent(this, StepService.class);
+    startService(intent);
+    super.onDestroy();
+}
+
+@Override
+public boolean onUnbind(Intent intent) {
+    return super.onUnbind(intent);
+}
+
+//    private  void unlock(){
+//        setLockPatternEnabled(android.provider.Settings.Secure.LOCK_PATTERN_ENABLED,false);
+//    }
+//
+//    private void setLockPatternEnabled(String systemSettingKey, boolean enabled) {
+//        //推荐使用
+//        android.provider.Settings.Secure.putInt(getContentResolver(), systemSettingKey,enabled ? 1 : 0);
+//    }
+
+synchronized private PowerManager.WakeLock getLock(Context context) {
+    if (mWakeLock != null) {
+        if (mWakeLock.isHeld())
+            mWakeLock.release();
+        mWakeLock = null;
+    }
+
+    if (mWakeLock == null) {
+        PowerManager mgr = (PowerManager) context
+                .getSystemService(Context.POWER_SERVICE);
+        mWakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                StepService.class.getName());
+        mWakeLock.setReferenceCounted(true);
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        if (hour &gt;= 23 || hour &lt;= 6) {
+            mWakeLock.acquire(5000);
+        } else {
+            mWakeLock.acquire(300000);
+        }
+    }
+
+    return (mWakeLock);
+}
+</code></pre><p>}</p>
+<p> 其实注释写的蛮详细的，但是我作为一个渣渣新手，乍一看要晕了。不管咋样还是一点一点开始看吧，首先看到的是这个服务继承了SensorEventListener接口，就是我之前转的那篇入门中提到过的。Android应用程序中使用传感器要依赖于android.hardware.SensorEventListener接口。通过该接口可以监听传感器的各种事件。那么就一定会实现onSensorChanged和onAccuracyChanged方法，果断去找，果然找到具体代码如下：</p>
+<pre><code>@Override
+public void onSensorChanged(SensorEvent event) {
+    //   i++;
+    if(stepSensor == 0){
+        StepDcretor.CURRENT_SETP = (int)event.values[0];
+    }else if(stepSensor == 1){
+        StepDcretor.CURRENT_SETP++;
+    }
+    updateNotification(&quot;今日步数：&quot; + StepDcretor.CURRENT_SETP + &quot; 步&quot;);
+}
+@Override
+public void onAccuracyChanged(Sensor sensor, int accuracy) {
+}
+</code></pre><p> 当传感器的值发生变化时，会调用onSensorChanged方法。当传感器的精度变化时会调用onAccuracyChanged方法。onSensorChanged方法里根据stepSensor（计步传感器类型 0-counter 1-detector）的类型设置StepDcretor.CURRENT_SETP的值，然后调用updateNotification方法更新通知栏。更新通知栏的操作并不复杂就不细看了，但是StepDcretor.CURRENT_SETP这玩意儿是干什么的？打开StepDcretor这个类又是一堆代码，无从下手，看到这里，没办法我只能转回去看StepService的生命周期onCreate方法，不管怎么样Service还得按生命周期走。在onCreate方法里看到，首先获取了当前的日期，然后初始化一个广播接收者，接着开启子线程执行startStepDetector方法。接着开启一个倒计时器，再初始化今天的数据和更新通知栏。</p>
+<pre><code>  @Override
+public void onCreate() {
+    super.onCreate();
+    CURRENTDATE = getTodayDate();
+    initBroadcastReceiver();
+    new Thread(new Runnable() {
+        public void run() {
+            startStepDetector();
+        }
+    }).start();
+
+    startTimeCount();
+    initTodayData();
+
+    updateNotification(&quot;今日步数：&quot; + StepDcretor.CURRENT_SETP + &quot; 步&quot;);
+}
+
+
+
+private void initBroadcastReceiver() {
+    final IntentFilter filter = new IntentFilter();
+    // 屏幕灭屏广播
+    filter.addAction(Intent.ACTION_SCREEN_OFF);
+    //关机广播
+    filter.addAction(Intent.ACTION_SHUTDOWN);
+    // 屏幕亮屏广播
+    filter.addAction(Intent.ACTION_SCREEN_ON);
+    // 屏幕解锁广播
+    filter.addAction(Intent.ACTION_USER_PRESENT);
+    // 当长按电源键弹出“关机”对话或者锁屏时系统会发出这个广播
+    // example：有时候会用到系统对话框，权限可能很高，会覆盖在锁屏界面或者“关机”对话框之上，
+    // 所以监听这个广播，当收到时就隐藏自己的对话，如点击pad右下角部分弹出的对话框
+    filter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+
+    mBatInfoReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            String action = intent.getAction();
+
+            if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                Log.d(&quot;xf&quot;, &quot;screen on&quot;);
+            } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                Log.d(&quot;xf&quot;, &quot;screen off&quot;);
+                //改为60秒一存储
+                duration = 60000;
+            } else if (Intent.ACTION_USER_PRESENT.equals(action)) {
+                Log.d(&quot;xf&quot;, &quot;screen unlock&quot;);
+                save();
+                //改为30秒一存储
+                duration = 30000;
+            } else if (Intent.ACTION_CLOSE_SYSTEM_DIALOGS.equals(intent.getAction())) {
+                Log.i(&quot;xf&quot;, &quot; receive Intent.ACTION_CLOSE_SYSTEM_DIALOGS&quot;);
+                //保存一次
+                save();
+            } else if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
+                Log.i(&quot;xf&quot;, &quot; receive ACTION_SHUTDOWN&quot;);
+                save();
+            }
+        }
+    };
+    registerReceiver(mBatInfoReceiver, filter);
+}
+</code></pre><p>getTodayDate()方法获取当前系统日期，然后在initBroadcastReceiver方法里注册一个监听了一堆内容的广播接收者，具体监听什么注释里写得很详细，然后根据收到的广播来修改duration存储时间或者是保存步数。save方法里乍一看就是向数据库里更新一下当前日期和步数，暂时先不做深究。</p>
+<pre><code> private void save() {
+    int tempStep = StepDcretor.CURRENT_SETP;
+    List&lt;StepData&gt; list = DbUtils.getQueryByWhere(StepData.class, &quot;today&quot;, new String[]{CURRENTDATE});
+    if (list.size() == 0 || list.isEmpty()) {
+        StepData data = new StepData();
+        data.setToday(CURRENTDATE);
+        data.setStep(tempStep + &quot;&quot;);
+        DbUtils.insert(data);
+    } else if (list.size() == 1) {
+        StepData data = list.get(0);
+        data.setStep(tempStep + &quot;&quot;);
+        DbUtils.update(data);
+    } else {
+    }
+}
+
+接下来继续看startStepDetector方法，首先对sensorManager和stepDetector的状态做了个判断不为空的话置为空，然后getLock获取电源管理锁，保证熄屏CPU运转。关于这个锁http://blog.csdn.net/q_zhe/article/details/7172220这里有具体介绍。然后
+</code></pre><p>获取传感器管理器的实例，在根据API不同版本分别执行addCountStepListener和addBasePedoListener两个方法。</p>
+<pre><code>private void startStepDetector() {
+    if (sensorManager != null &amp;&amp; stepDetector != null) {
+        sensorManager.unregisterListener(stepDetector);
+        sensorManager = null;
+        stepDetector = null;
+    }
+    getLock(this);
+    // 获取传感器管理器的实例
+    sensorManager = (SensorManager) this
+            .getSystemService(SENSOR_SERVICE);
+    //android4.4以后可以使用计步传感器
+    int VERSION_CODES = android.os.Build.VERSION.SDK_INT;
+    if (VERSION_CODES &gt;= 19) {
+        addCountStepListener();
+    } else {
+        addBasePedoListener();
+    }
+}
+</code></pre><p> 先看addCountStepListener方法，API版本大于19执行这个方法，首先先拿到两种传感器，TYPE_STEP_COUNTER 计步传感器，用于记录激活后的步伐数。TYPE_STEP_DETECTOR 步行检测传感器，用户每走一步就触发一次事件。根据拿到的情况来注册监听，sensorManager.registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_UI);查资料后得知这里第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率 。如果两种传感器都没拿到，就还是执行addBasePedoListener方法。在addBasePedoListener方法里获得加速度传感器，注册监听，然后调stepDetector里的回调接口更新通知栏。具体代码片段如下：</p>
+<p> private void addCountStepListener() {<br>        Sensor detectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);<br>        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);<br>        if (countSensor != null) {<br>            stepSensor = 0;<br>            Log.v(“base”, “countSensor”);<br>            sensorManager.registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_UI);<br>        } else if (detectorSensor != null) {<br>            stepSensor = 1;<br>            Log.v(“base”, “detector”);<br>            sensorManager.registerListener(StepService.this, detectorSensor, SensorManager.SENSOR_DELAY_UI);<br>        } else {<br>            Log.v(“xf”, “Count sensor not available!”);<br>            addBasePedoListener();<br>        }<br>    }</p>
+<pre><code>private void addBasePedoListener() {
+    stepDetector = new StepDcretor(this);
+    // 获得传感器的类型，这里获得的类型是加速度传感器
+    // 此方法用来注册，只有注册过才会生效，参数：SensorEventListener的实例，Sensor的实例，更新速率
+    Sensor sensor = sensorManager
+            .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    // sensorManager.unregisterListener(stepDetector);
+    sensorManager.registerListener(stepDetector, sensor,
+            SensorManager.SENSOR_DELAY_UI);
+    stepDetector
+            .setOnSensorChangeListener(new StepDcretor.OnSensorChangeListener() {
+                @Override
+                public void onChange() {
+                    updateNotification(&quot;今日步数：&quot; + StepDcretor.CURRENT_SETP + &quot; 步&quot;);
+                }
+            });
+}
+</code></pre><p>至此StepService服务里的重要代码也看得差不多了。还剩最后一个类StepDcretor。这里面写的应该就是具体计步的方法了。</p>
+<pre><code>package com.base.basepedo.service;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.util.Log;
+import com.base.basepedo.utils.CountDownTimer;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class StepDcretor implements SensorEventListener {
+//存放三轴数据
+float[] oriValues = new float[3];
+final int valueNum = 4;
+//用于存放计算阈值的波峰波谷差值
+float[] tempValue = new float[valueNum];
+int tempCount = 0;
+//是否上升的标志位
+boolean isDirectionUp = false;
+//持续上升次数
+int continueUpCount = 0;
+//上一点的持续上升的次数，为了记录波峰的上升次数
+int continueUpFormerCount = 0;
+//上一点的状态，上升还是下降
+boolean lastStatus = false;
+//波峰值
+float peakOfWave = 0;
+//波谷值
+float valleyOfWave = 0;
+//此次波峰的时间
+long timeOfThisPeak = 0;
+//上次波峰的时间
+long timeOfLastPeak = 0;
+//当前的时间
+long timeOfNow = 0;
+//当前传感器的值
+float gravityNew = 0;
+//上次传感器的值
+float gravityOld = 0;
+//动态阈值需要动态的数据，这个值用于这些动态数据的阈值
+final float initialValue = (float) 1.7;
+//初始阈值
+float ThreadValue = (float) 2.0;
+
+private final String TAG = &quot;StepDcretor&quot;;
+
+/**
+ * 0-准备计时   1-计时中  2-准备为正常计步计时  3-正常计步中
+ */
+private int CountTimeState = 0;
+public static int CURRENT_SETP = 0;
+public static int TEMP_STEP = 0;
+private int lastStep = -1;
+// 加速计的三个维度数值
+public static float[] gravity = new float[3];
+public static float[] linear_acceleration = new float[3];
+//用三个维度算出的平均值
+public static float average = 0;
+
+private Timer timer;
+// 倒计时4秒，4秒内不会显示计步，用于屏蔽细微波动
+private long duration = 4000;
+private TimeCount time;
+
+OnSensorChangeListener onSensorChangeListener;
+
+public interface OnSensorChangeListener {
+    void onChange();
+}
+
+public StepDcretor(Context context) {
+    super();
+}
+
+public void onAccuracyChanged(Sensor arg0, int arg1) {
+
+}
+
+public OnSensorChangeListener getOnSensorChangeListener() {
+    return onSensorChangeListener;
+}
+
+public void setOnSensorChangeListener(
+        OnSensorChangeListener onSensorChangeListener) {
+    this.onSensorChangeListener = onSensorChangeListener;
+}
+
+public void onSensorChanged(SensorEvent event) {
+    Sensor sensor = event.sensor;
+    synchronized (this) {
+        if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            calc_step(event);
+        }
+    }
+}
+
+synchronized private void calc_step(SensorEvent event) {
+    average = (float) Math.sqrt(Math.pow(event.values[0], 2)
+            + Math.pow(event.values[1], 2) + Math.pow(event.values[2], 2));
+    DetectorNewStep(average);
+}
+
+/*
+ * 检测步子，并开始计步
+ * 1.传入sersor中的数据
+ * 2.如果检测到了波峰，并且符合时间差以及阈值的条件，则判定为1步
+ * 3.符合时间差条件，波峰波谷差值大于initialValue，则将该差值纳入阈值的计算中
+ * */
+public void DetectorNewStep(float values) {
+    if (gravityOld == 0) {
+        gravityOld = values;
+    } else {
+        if (DetectorPeak(values, gravityOld)) {
+            timeOfLastPeak = timeOfThisPeak;
+            timeOfNow = System.currentTimeMillis();
+            if (timeOfNow - timeOfLastPeak &gt;= 200
+                    &amp;&amp; (peakOfWave - valleyOfWave &gt;= ThreadValue) &amp;&amp; timeOfNow - timeOfLastPeak &lt;= 2000) {
+                timeOfThisPeak = timeOfNow;
+                //更新界面的处理，不涉及到算法
+                preStep();
+            }
+            if (timeOfNow - timeOfLastPeak &gt;= 200
+                    &amp;&amp; (peakOfWave - valleyOfWave &gt;= initialValue)) {
+                timeOfThisPeak = timeOfNow;
+                ThreadValue = Peak_Valley_Thread(peakOfWave - valleyOfWave);
+            }
+        }
+    }
+    gravityOld = values;
+}
+
+private void preStep() {
+    if (CountTimeState == 0) {
+        // 开启计时器
+        time = new TimeCount(duration, 700);
+        time.start();
+        CountTimeState = 1;
+        Log.v(TAG, &quot;开启计时器&quot;);
+    } else if (CountTimeState == 1) {
+        TEMP_STEP++;
+        Log.v(TAG, &quot;计步中 TEMP_STEP:&quot; + TEMP_STEP);
+    } else if (CountTimeState == 3) {
+        CURRENT_SETP++;
+        if (onSensorChangeListener != null) {
+            onSensorChangeListener.onChange();
+        }
+    }
+}
+
+
+/*
+ * 检测波峰
+ * 以下四个条件判断为波峰：
+ * 1.目前点为下降的趋势：isDirectionUp为false
+ * 2.之前的点为上升的趋势：lastStatus为true
+ * 3.到波峰为止，持续上升大于等于2次
+ * 4.波峰值大于1.2g,小于2g
+ * 记录波谷值
+ * 1.观察波形图，可以发现在出现步子的地方，波谷的下一个就是波峰，有比较明显的特征以及差值
+ * 2.所以要记录每次的波谷值，为了和下次的波峰做对比
+ * */
+public boolean DetectorPeak(float newValue, float oldValue) {
+    lastStatus = isDirectionUp;
+    if (newValue &gt;= oldValue) {
+        isDirectionUp = true;
+        continueUpCount++;
+    } else {
+        continueUpFormerCount = continueUpCount;
+        continueUpCount = 0;
+        isDirectionUp = false;
+    }
+
+    if (!isDirectionUp &amp;&amp; lastStatus
+            &amp;&amp; (continueUpFormerCount &gt;= 2 &amp;&amp; (oldValue &gt;= 11.76 &amp;&amp; oldValue &lt; 19.6))) {
+        peakOfWave = oldValue;
+        return true;
+    } else if (!lastStatus &amp;&amp; isDirectionUp) {
+        valleyOfWave = oldValue;
+        return false;
+    } else {
+        return false;
+    }
+}
+
+/*
+ * 阈值的计算
+ * 1.通过波峰波谷的差值计算阈值
+ * 2.记录4个值，存入tempValue[]数组中
+ * 3.在将数组传入函数averageValue中计算阈值
+ * */
+public float Peak_Valley_Thread(float value) {
+    float tempThread = ThreadValue;
+    if (tempCount &lt; valueNum) {
+        tempValue[tempCount] = value;
+        tempCount++;
+    } else {
+        tempThread = averageValue(tempValue, valueNum);
+        for (int i = 1; i &lt; valueNum; i++) {
+            tempValue[i - 1] = tempValue[i];
+        }
+        tempValue[valueNum - 1] = value;
+    }
+    return tempThread;
+
+}
+
+/*
+ * 梯度化阈值
+ * 1.计算数组的均值
+ * 2.通过均值将阈值梯度化在一个范围里
+ * */
+public float averageValue(float value[], int n) {
+    float ave = 0;
+    for (int i = 0; i &lt; n; i++) {
+        ave += value[i];
+    }
+    ave = ave / valueNum;
+    if (ave &gt;= 8)
+        ave = (float) 4.3;
+    else if (ave &gt;= 7 &amp;&amp; ave &lt; 8)
+        ave = (float) 3.3;
+    else if (ave &gt;= 4 &amp;&amp; ave &lt; 7)
+        ave = (float) 2.3;
+    else if (ave &gt;= 3 &amp;&amp; ave &lt; 4)
+        ave = (float) 2.0;
+    else {
+        ave = (float) 1.3;
+    }
+    return ave;
+}
+
+class TimeCount extends CountDownTimer {
+    public TimeCount(long millisInFuture, long countDownInterval) {
+        super(millisInFuture, countDownInterval);
+    }
+
+    @Override
+    public void onFinish() {
+        // 如果计时器正常结束，则开始计步
+        time.cancel();
+        CURRENT_SETP += TEMP_STEP;
+        lastStep = -1;
+</code></pre><p>//            CountTimeState = 2;<br>            Log.v(TAG, “计时正常结束”);</p>
+<pre><code>        timer = new Timer(true);
+        TimerTask task = new TimerTask() {
+            public void run() {
+                if (lastStep == CURRENT_SETP) {
+                    timer.cancel();
+                    CountTimeState = 0;
+                    lastStep = -1;
+                    TEMP_STEP = 0;
+                    Log.v(TAG, &quot;停止计步：&quot; + CURRENT_SETP);
+                } else {
+                    lastStep = CURRENT_SETP;
+                }
+            }
+        };
+        timer.schedule(task, 0, 3000);
+        CountTimeState = 3;
+    }
+
+    @Override
+    public void onTick(long millisUntilFinished) {
+        if (lastStep == TEMP_STEP) {
+            Log.v(TAG, &quot;onTick 计时停止&quot;);
+            time.cancel();
+            CountTimeState = 0;
+            lastStep = -1;
+            TEMP_STEP = 0;
+        } else {
+            lastStep = TEMP_STEP;
+        }
+    }
+
+}
+</code></pre><p>}</p>
+<p>这个类同样继承了SensorEventListener接口，看他的onSensorChanged和onAccuracyChanged方法，在onSensorChanged方法中对传感器类型做了判断，是加速度传感器的话执行calc_step方法，在calc_step方法里获取传感器在xyz，三个坐标轴上的加速的绝对值的和，把结果传入DetectorNewStep方法计算步子。判断</p>
+<p>gravityOld上次传感器的值，如果为0就把传过来的值赋给gravityOld否则在用DetectorPeak方法传入新值和旧值判断波峰。先记录下lastStatus即上一点的状态，上升还是下降，然后比较新值和旧值如果newValue &gt;= oldValue就设置和更新 isDirectionUp、continueUpCount 否则就将contineUpCount赋给continueUpFormerCount（上一点的持续上升的次数，为了记录波峰的上升次数）。最后判断当上升的标志位和上一次的状态都为true并且旧值在规定范围内的话，这个值就是波峰值返回true如果上一次状态为false则这个值为波谷值返回false。这里看的有点晕，大概就是判断是波峰还是波谷把，回到DetectorNewStep方法里，如果是波峰就记录这次的时间和上次的时间，两次时间差在200到2000之间并且波峰与波谷的差大于阈值时就更新这次波峰的时间和界面，在preStep方法里设置接口回调，如果两次时间差大于200波峰波谷差大于等于initialValue就重新计算阈值。</p>
+<pre><code>public void DetectorNewStep(float values) {
+    if (gravityOld == 0) {
+        gravityOld = values;
+    } else {
+        if (DetectorPeak(values, gravityOld)) {
+            timeOfLastPeak = timeOfThisPeak;
+            timeOfNow = System.currentTimeMillis();
+            if (timeOfNow - timeOfLastPeak &gt;= 200
+                    &amp;&amp; (peakOfWave - valleyOfWave &gt;= ThreadValue) &amp;&amp; timeOfNow - timeOfLastPeak &lt;= 2000) {
+                timeOfThisPeak = timeOfNow;
+                //更新界面的处理，不涉及到算法
+                preStep();
+            }
+            if (timeOfNow - timeOfLastPeak &gt;= 200
+                    &amp;&amp; (peakOfWave - valleyOfWave &gt;= initialValue)) {
+                timeOfThisPeak = timeOfNow;
+                ThreadValue = Peak_Valley_Thread(peakOfWave - valleyOfWave);
+            }
+        }
+    }
+    gravityOld = values;
+}
+</code></pre><p>基本就是这样了，总结一下就是开启一个服务，在服务里注册一个广播接收者监听屏幕和电源情况保存数据，并且新建子线程，在子线程里开启计步检测，根据不同的API版本获取传感器管理器和传感器实例并注册监听，然后更具传感器返回的数据，计算波峰波谷阈值之类的符合要求即为一步，然后更新通知栏和界面。关于计步的算法什么波峰波谷值阈值的计算还是看不太懂，但是大概的流程看懂了。虽然代码总量不多，但是作为一个新手小白还是花了一会时间的，因为基础知识不扎实经验又少，看的时候遇到没用过的类和方法就去查资料再去看资料也花了不少时间，不管怎样，进步都是一点一点来的，我在此把我的学习过程记录下来。</p>
+<hr>
+<p>后来我去看了这篇文章：<a href="http://xueshu.baidu.com/s?wd=paperuri%3A%28158baa288e6ece0034de6f3111e49606%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fwww.docin.com%2Fp-1313459281.html&amp;ie=utf-8" target="_blank" rel="noopener">http://xueshu.baidu.com/s?wd=paperuri%3A%28158baa288e6ece0034de6f3111e49606%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fwww.docin.com%2Fp-1313459281.html&amp;ie=utf-8</a>   对计步算法稍微理解了一点，就是对三个方向加速度进行检测，连续检测到一次波峰和一次波谷记为一步，然后在根据人的步频做一些范围的限定校正，提高计步的精度。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/一半在外的按钮布局效果实现（一次死脑筋记录)/" rel="next" title="一半在外的按钮布局效果实现（一次死脑筋记录)">
+                <i class="fa fa-chevron-left"></i> 一半在外的按钮布局效果实现（一次死脑筋记录)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/一个简单的自定义TopBar/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mouse.png"
+                alt="一个写代码的胖子" />
+            
+              <p class="site-author-name" itemprop="name">一个写代码的胖子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一个写代码的胖子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

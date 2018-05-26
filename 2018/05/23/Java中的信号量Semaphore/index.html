@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -80,15 +80,16 @@
 
 
 <meta name="description" content="###1、信号量概念       信号量(Semaphore)，有时被称为信号灯，是在多线程环境下使用的一种设施，是可以用来保证两个或多个关键代码段不被并发调用。在进入一个关键代码段之前，线程必须获取一个信号量；一旦该关键代码段完成了，那么该线程必须释放信号量。其它想进入该关键代码段的线程必须等待直到第一个线程释放信号量。为了完成这个过程，需要创建一个信号量VI，然后将Acquire Semaph">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="Java中的信号量Semaphore">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/Java中的信号量Semaphore/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
 <meta property="og:description" content="###1、信号量概念       信号量(Semaphore)，有时被称为信号灯，是在多线程环境下使用的一种设施，是可以用来保证两个或多个关键代码段不被并发调用。在进入一个关键代码段之前，线程必须获取一个信号量；一旦该关键代码段完成了，那么该线程必须释放信号量。其它想进入该关键代码段的线程必须等待直到第一个线程释放信号量。为了完成这个过程，需要创建一个信号量VI，然后将Acquire Semaph">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-23T01:33:45.099Z">
+<meta property="og:updated_time" content="2018-05-26T14:03:35.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:title" content="Java中的信号量Semaphore">
 <meta name="twitter:description" content="###1、信号量概念       信号量(Semaphore)，有时被称为信号灯，是在多线程环境下使用的一种设施，是可以用来保证两个或多个关键代码段不被并发调用。在进入一个关键代码段之前，线程必须获取一个信号量；一旦该关键代码段完成了，那么该线程必须释放信号量。其它想进入该关键代码段的线程必须等待直到第一个线程释放信号量。为了完成这个过程，需要创建一个信号量VI，然后将Acquire Semaph">
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>Java中的信号量Semaphore | 一个写代码的胖子</title>
   
 
 
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Java中的信号量Semaphore</h1>
         
 
         <div class="post-meta">
@@ -303,13 +304,87 @@
 <p>###2、Semaphore的主要方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void acquire():从此信号量获取一个许可，在提供一个许可前一直将线程阻塞，否则线程被中断。</span><br><span class="line">void release():释放一个许可，将其返回给信号量。</span><br><span class="line">int availablePermits():返回此信号量中当前可用的许可数。</span><br><span class="line">boolean hasQueuedThreads():查询是否有线程正在等待获取。</span><br></pre></td></tr></table></figure>
 <p>###3、构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Semaphore(int permits,boolean fair)</span><br></pre></td></tr></table></figure>
+<p>public Semaphore(int permits,boolean fair) </p>
 <p>permits:初始化可用的许可数目。 fair: 若该信号量保证在征用时按FIFO的顺序授予许可，则为true，否则为false</p>
 <p>###4、使用示例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">package com.example.sy.a20170606;</span><br><span class="line"></span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.Button;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">import java.util.concurrent.ExecutorService;</span><br><span class="line">import java.util.concurrent.Executors;</span><br><span class="line">import java.util.concurrent.Semaphore;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private Button btn;</span><br><span class="line">    private Semaphore semaphore;</span><br><span class="line">    private ExecutorService newCachedThreadPool;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        btn = (Button) findViewById(R.id.btn);</span><br><span class="line">        newCachedThreadPool = Executors.newCachedThreadPool();//线程池</span><br><span class="line">        semaphore = new Semaphore(3);</span><br><span class="line"></span><br><span class="line">        btn.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                gogogo();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void gogogo() &#123;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">            newCachedThreadPool.execute(new Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        semaphore.acquire();</span><br><span class="line">                        Log.e(&quot;semaphore&quot;, &quot;线程：&quot; + Thread.currentThread().getName() + &quot; 正在访问&quot;);</span><br><span class="line">                        Thread.sleep(3000);//模拟访问操作</span><br><span class="line">                        semaphore.release();</span><br><span class="line">                        Log.e(&quot;semaphore&quot;, &quot;线程：&quot; + Thread.currentThread().getName() + &quot; 结束访问&quot;);</span><br><span class="line">                    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        newCachedThreadPool.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码很简单，初始化三个信号量，点击按钮执行gogogo方法，循环十次从线程池取线程执行打印日志。</p>
+<pre><code>package com.example.sy.a20170606;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
+
+public class MainActivity extends AppCompatActivity {
+
+private Button btn;
+private Semaphore semaphore;
+private ExecutorService newCachedThreadPool;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    btn = (Button) findViewById(R.id.btn);
+    newCachedThreadPool = Executors.newCachedThreadPool();//线程池
+    semaphore = new Semaphore(3);
+
+    btn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            gogogo();
+        }
+    });
+}
+
+private void gogogo() {
+
+    for (int i = 0; i &lt; 10; i++) {
+        newCachedThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    semaphore.acquire();
+                    Log.e(&quot;semaphore&quot;, &quot;线程：&quot; + Thread.currentThread().getName() + &quot; 正在访问&quot;);
+                    Thread.sleep(3000);//模拟访问操作
+                    semaphore.release();
+                    Log.e(&quot;semaphore&quot;, &quot;线程：&quot; + Thread.currentThread().getName() + &quot; 结束访问&quot;);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    newCachedThreadPool.shutdown();
+}
+}
+</code></pre><p>代码很简单，初始化三个信号量，点击按钮执行gogogo方法，循环十次从线程池取线程执行打印日志。</p>
 <p>打印日志结果：</p>
-<p>线程：pool-1-thread-1 正在访问<br>线程：pool-1-thread-2 正在访问<br>线程：pool-1-thread-5 正在访问<br>线程：pool-1-thread-1 结束访问<br>线程：pool-1-thread-4 正在访问<br>线程：pool-1-thread-3 正在访问<br>线程：pool-1-thread-2 结束访问<br>线程：pool-1-thread-6 正在访问<br>线程：pool-1-thread-5 结束访问<br>线程：pool-1-thread-4 结束访问<br>线程：pool-1-thread-7 正在访问<br>线程：pool-1-thread-3 结束访问<br>线程：pool-1-thread-8 正在访问<br>线程：pool-1-thread-6 结束访问<br>线程：pool-1-thread-9 正在访问<br>线程：pool-1-thread-7 结束访问<br>线程：pool-1-thread-10 正在访问<br>线程：pool-1-thread-8 结束访问<br>线程：pool-1-thread-9 结束访问<br>线程：pool-1-thread-10 结束访问</p>
+<p>线程：pool-1-thread-1 正在访问</p>
+<p>线程：pool-1-thread-2 正在访问</p>
+<p>线程：pool-1-thread-5 正在访问</p>
+<p>线程：pool-1-thread-1 结束访问</p>
+<p>线程：pool-1-thread-4 正在访问</p>
+<p>线程：pool-1-thread-3 正在访问</p>
+<p>线程：pool-1-thread-2 结束访问</p>
+<p>线程：pool-1-thread-6 正在访问</p>
+<p>线程：pool-1-thread-5 结束访问</p>
+<p>线程：pool-1-thread-4 结束访问</p>
+<p>线程：pool-1-thread-7 正在访问</p>
+<p>线程：pool-1-thread-3 结束访问</p>
+<p>线程：pool-1-thread-8 正在访问</p>
+<p>线程：pool-1-thread-6 结束访问</p>
+<p>线程：pool-1-thread-9 正在访问</p>
+<p>线程：pool-1-thread-7 结束访问</p>
+<p>线程：pool-1-thread-10 正在访问</p>
+<p>线程：pool-1-thread-8 结束访问</p>
+<p>线程：pool-1-thread-9 结束访问</p>
+<p>线程：pool-1-thread-10 结束访问</p>
 <p>可以从日志清楚地看到，最多有三个线程并发执行，即同时最多有三个线程访问公共资源。</p>
 <p>参考资料：<br>Java并发包中Semaphore的工作原理、源码分析及使用示例 - nullzx - 博客园<br><a href="http://www.cnblogs.com/nullzx/p/5270233.html" target="_blank" rel="noopener">http://www.cnblogs.com/nullzx/p/5270233.html</a><br>Semaphore的使用 - 残剑_ - 博客园<br><a href="http://www.cnblogs.com/liuling/p/2013-8-20-03.html" target="_blank" rel="noopener">http://www.cnblogs.com/liuling/p/2013-8-20-03.html</a></p>
 
@@ -327,6 +402,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -336,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/23/Cannot merge new index 66195 into a non-jumbo instruction!问题解决/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/05/23/Cannot merge new index 66195 into a non-jumbo instruction!问题解决/" rel="next" title="Cannot merge new index 66195 into a non-jumbo instruction!问题解决">
+                <i class="fa fa-chevron-left"></i> Cannot merge new index 66195 into a non-jumbo instruction!问题解决
               </a>
             
           </div>
@@ -346,8 +427,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/ListView常用拓展/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/ListView常用拓展/" rel="prev" title="ListView常用拓展">
+                ListView常用拓展 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -420,7 +501,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -428,6 +509,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

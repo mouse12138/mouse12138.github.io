@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -80,15 +80,16 @@
 
 
 <meta name="description" content="《Android群英传》读书记录 ##1、使用ViewHolder模式提高效率      在Adapter里定义一个内部类ViewHoleder ，将布局中的空间作为成员变量即可。      ……        @Override    public View getView(int positon ,View contentView ,ViewGroup parent){">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="ListView使用技巧">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/ListView使用技巧/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
 <meta property="og:description" content="《Android群英传》读书记录 ##1、使用ViewHolder模式提高效率      在Adapter里定义一个内部类ViewHoleder ，将布局中的空间作为成员变量即可。      ……        @Override    public View getView(int positon ,View contentView ,ViewGroup parent){">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-23T01:38:06.126Z">
+<meta property="og:updated_time" content="2018-05-26T14:08:23.288Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:title" content="ListView使用技巧">
 <meta name="twitter:description" content="《Android群英传》读书记录 ##1、使用ViewHolder模式提高效率      在Adapter里定义一个内部类ViewHoleder ，将布局中的空间作为成员变量即可。      ……        @Override    public View getView(int positon ,View contentView ,ViewGroup parent){">
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>ListView使用技巧 | 一个写代码的胖子</title>
   
 
 
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">ListView使用技巧</h1>
         
 
         <div class="post-meta">
@@ -321,11 +322,23 @@ android:divider=&quot;@null”//透明
 <p>##7、遍历LlistView里所有item<br>      for(int i = 0; i &lt; mListView.getChildCount();i++){<br>        View = view = mListView.getChildAt(i);<br>    }</p>
 <p>##8、处理空的listview<br>     listview.setEmptyView(findViewById(R.layout.empty_view));</p>
 <p>##9、滑动监听</p>
-<p> OnTounchListener 是View中的监听事件根据 event.getAction()返回的三个事件来处理相应逻辑。ACTION_DOWN(触摸时操作)、ACTION_MOVE（移动时操作）和ACTION_UP（离开时操作）</p>
-<p>  OnScrollListener  是AbsListView 中的监听事件，有两个回调方法：onScrollStateChanged()和onScroll()。</p>
-<p>  onScrollStateChanged方法，是根据参数scrollState来决定回调次数，scrollState有三种模式 :<br>        SCROLL_STATE_IDLE：滚动停止时<br>        SCROLL_STATE_TOUCH_SCROLL ：正在滚动时<br>        SCROLL_STATE_FLING：手指抛动时，即用力滑动后，在离开后listview由于惯性继续滑动的状态。<br>       当没有做抛动的状态时，这个方法回调两次，否则会回调三次。</p>
-<p>   onScroll方法，在listview滚动时会一直回调，方法中的三个int参数显示当前listview的滚动状态。<br>        firstVisibleItem：当前能看见的第一个item的id（从0开始）<br>        visibleItenCount：当前能看见的item总数（包括没有显示完整的，显示一半的也算）<br>        totalItemCount：整个listview的item总数</p>
-
+<p> OnTounchListener 是View中的监听事件根据 event.getAction()返回的三个事件来处理相应逻辑。</p>
+<pre><code>ACTION_DOWN(触摸时操作)
+ACTION_MOVE（移动时操作）
+ACTION_UP（离开时操作）
+</code></pre><p>  OnScrollListener  是AbsListView 中的监听事件，有两个回调方法：</p>
+<pre><code>onScrollStateChanged()
+onScroll()
+</code></pre><p>  onScrollStateChanged方法，是根据参数scrollState来决定回调次数，scrollState有三种模式 :</p>
+<pre><code> SCROLL_STATE_IDLE：滚动停止时 
+ SCROLL_STATE_TOUCH_SCROLL ：正在滚动时  
+ SCROLL_STATE_FLING：手指抛动时，即用力滑动后，在离开后listview由于惯性继续滑动的状态。
+当没有做抛动的状态时，这个方法回调两次，否则会回调三次。
+</code></pre><p>   onScroll方法，在listview滚动时会一直回调，方法中的三个int参数显示当前listview的滚动状态。</p>
+<pre><code>firstVisibleItem：当前能看见的第一个item的id（从0开始）
+visibleItenCount：当前能看见的item总数（包括没有显示完整的，显示一半的也算）
+totalItemCount：整个listview的item总数
+</code></pre>
       
     </div>
     
@@ -340,6 +353,12 @@ android:divider=&quot;@null”//透明
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -349,8 +368,8 @@ android:divider=&quot;@null”//透明
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/23/ListView局部更新/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/05/23/ListView局部更新/" rel="next" title="ListView局部更新">
+                <i class="fa fa-chevron-left"></i> ListView局部更新
               </a>
             
           </div>
@@ -359,8 +378,8 @@ android:divider=&quot;@null”//透明
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/Log日志工具类/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/Log日志工具类/" rel="prev" title="Log日志工具类">
+                Log日志工具类 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -433,7 +452,7 @@ android:divider=&quot;@null”//透明
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -441,6 +460,15 @@ android:divider=&quot;@null”//透明
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

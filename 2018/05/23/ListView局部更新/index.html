@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -80,16 +80,17 @@
 
 
 <meta name="description" content="好几天没有写博了，前几天一直在忙毕业答辩，之后还回家了一趟，一直没有写。　　今天实习时候，使用listview的adapter.notifyDataSetChanged(),方法刷新数据时候发现会发生界面闪烁的问题。后来知道了可以在adapter写一个updateView方法来实现一个item的局部更新，不像notifyDataSetChanged方法把全部数据刷新一遍。调用的时候只要调用ad">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="ListView局部更新">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/ListView局部更新/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
 <meta property="og:description" content="好几天没有写博了，前几天一直在忙毕业答辩，之后还回家了一趟，一直没有写。　　今天实习时候，使用listview的adapter.notifyDataSetChanged(),方法刷新数据时候发现会发生界面闪烁的问题。后来知道了可以在adapter写一个updateView方法来实现一个item的局部更新，不像notifyDataSetChanged方法把全部数据刷新一遍。调用的时候只要调用ad">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160601181229718">
-<meta property="og:updated_time" content="2018-05-23T01:35:33.655Z">
+<meta property="og:updated_time" content="2018-05-26T14:05:47.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:title" content="ListView局部更新">
 <meta name="twitter:description" content="好几天没有写博了，前几天一直在忙毕业答辩，之后还回家了一趟，一直没有写。　　今天实习时候，使用listview的adapter.notifyDataSetChanged(),方法刷新数据时候发现会发生界面闪烁的问题。后来知道了可以在adapter写一个updateView方法来实现一个item的局部更新，不像notifyDataSetChanged方法把全部数据刷新一遍。调用的时候只要调用ad">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160601181229718">
 
@@ -127,7 +128,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>ListView局部更新 | 一个写代码的胖子</title>
   
 
 
@@ -251,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">ListView局部更新</h1>
         
 
         <div class="post-meta">
@@ -303,8 +304,16 @@
       
         <p>　　好几天没有写博了，前几天一直在忙毕业答辩，之后还回家了一趟，一直没有写。<br>　　今天实习时候，使用listview的adapter.notifyDataSetChanged(),方法刷新数据时候发现会发生界面闪烁的问题。后来知道了可以在adapter写一个updateView方法来实现一个item的局部更新，不像notifyDataSetChanged方法把全部数据刷新一遍。调用的时候只要调用adapter.updateView（position）就可以了。
 　　</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void updateView(int itemIndex) &#123;</span><br><span class="line">    int firstVisible = listview.getFirstVisiblePosition();</span><br><span class="line">       int lastVisible = listview.getLastVisiblePosition();</span><br><span class="line">       if (itemIndex &gt;= firstVisible &amp;&amp; itemIndex &lt;= lastVisible) &#123;</span><br><span class="line">           ViewHolder holder = (ViewHolder) (listview.getChildAt(itemIndex - firstVisible).getTag());</span><br><span class="line">		//具体更新操作</span><br><span class="line">		</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>效果看起来差不多哈<br><img src="http://img.blog.csdn.net/20160601181229718" alt="这里写图片描述"></p>
+<pre><code> public void updateView(int itemIndex) {
+        int firstVisible = listview.getFirstVisiblePosition();
+        int lastVisible = listview.getLastVisiblePosition();
+        if (itemIndex &gt;= firstVisible &amp;&amp; itemIndex &lt;= lastVisible) {
+            ViewHolder holder = (ViewHolder) (listview.getChildAt(itemIndex - firstVisible).getTag());
+            //具体更新操作
+
+        }
+}
+</code></pre><p>效果看起来差不多哈<br><img src="http://img.blog.csdn.net/20160601181229718" alt="这里写图片描述"></p>
 
       
     </div>
@@ -320,6 +329,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -329,8 +344,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/23/ListView常用拓展/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/05/23/ListView常用拓展/" rel="next" title="ListView常用拓展">
+                <i class="fa fa-chevron-left"></i> ListView常用拓展
               </a>
             
           </div>
@@ -339,8 +354,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/ListView使用技巧/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/ListView使用技巧/" rel="prev" title="ListView使用技巧">
+                ListView使用技巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -413,7 +428,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -421,6 +436,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

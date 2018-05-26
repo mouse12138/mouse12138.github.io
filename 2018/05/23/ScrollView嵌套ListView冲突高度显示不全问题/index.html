@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -80,17 +80,18 @@
 
 
 <meta name="description" content="实习中遇到了ScrollView里放置一个ListView的情况，照常书写代码测试的时候出现这种情况：　　就是只显示一个item的高度。上网搜索了之后才知道是ScrollView嵌套ListView会无法正确计算高度，导致只显示一个item的高度。　　网上解决的思路也有很多，一种是不要在ScrollView里放置ListView，换成其他的布局方式比如ScrollView＋LinearLayo">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="ScrollView嵌套ListView冲突高度显示不全问题">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/ScrollView嵌套ListView冲突高度显示不全问题/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
 <meta property="og:description" content="实习中遇到了ScrollView里放置一个ListView的情况，照常书写代码测试的时候出现这种情况：　　就是只显示一个item的高度。上网搜索了之后才知道是ScrollView嵌套ListView会无法正确计算高度，导致只显示一个item的高度。　　网上解决的思路也有很多，一种是不要在ScrollView里放置ListView，换成其他的布局方式比如ScrollView＋LinearLayo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160624123228853">
 <meta property="og:image" content="http://img.blog.csdn.net/20160624130301476">
-<meta property="og:updated_time" content="2018-05-23T01:35:05.374Z">
+<meta property="og:updated_time" content="2018-05-26T14:11:31.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:title" content="ScrollView嵌套ListView冲突高度显示不全问题">
 <meta name="twitter:description" content="实习中遇到了ScrollView里放置一个ListView的情况，照常书写代码测试的时候出现这种情况：　　就是只显示一个item的高度。上网搜索了之后才知道是ScrollView嵌套ListView会无法正确计算高度，导致只显示一个item的高度。　　网上解决的思路也有很多，一种是不要在ScrollView里放置ListView，换成其他的布局方式比如ScrollView＋LinearLayo">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160624123228853">
 
@@ -128,7 +129,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>ScrollView嵌套ListView冲突高度显示不全问题 | 一个写代码的胖子</title>
   
 
 
@@ -252,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">ScrollView嵌套ListView冲突高度显示不全问题</h1>
         
 
         <div class="post-meta">
@@ -304,17 +305,92 @@
       
         <p>　　实习中遇到了ScrollView里放置一个ListView的情况，照常书写代码测试的时候出现这种情况：<br><img src="http://img.blog.csdn.net/20160624123228853" alt="这里写图片描述"><br>　　就是只显示一个item的高度。上网搜索了之后才知道是ScrollView嵌套ListView会无法正确计算高度，导致只显示一个item的高度。<br>　　网上解决的思路也有很多，一种是不要在ScrollView里放置ListView，换成其他的布局方式比如ScrollView＋LinearLayout或者直接用ListView在其headview里完成需要的复杂布局等等。第二种思路就是既然无法计算正确高度就重写高度测量的方法来达到解决问题的目的。<br>　　就第二种思路又有多种方法，以下是我测试过的方法均可以解决这个问题。<br>　　<strong>第一种方法：写一个方法重新测量高度并设置给listview即可。</strong>
 　　</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static void setListViewHeightBasedOnChildren(ListView listView) &#123;</span><br><span class="line">//获得adapter</span><br><span class="line">       MyAdapter adapter = (MyAdapter) listView.getAdapter();</span><br><span class="line">       if (adapter == null) &#123;</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       int totalHeight = 0;</span><br><span class="line">       for (int i = 0; i &lt; adapter.getCount(); i++) &#123;</span><br><span class="line">           View listItem = adapter.getView(i, null, listView);</span><br><span class="line">           listItem.measure(0, 0);</span><br><span class="line">           //计算总高度</span><br><span class="line">           totalHeight += listItem.getMeasuredHeight();</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ViewGroup.LayoutParams params = listView.getLayoutParams();</span><br><span class="line">       //计算分割线高度</span><br><span class="line">       params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));</span><br><span class="line">       //给listview设置高度</span><br><span class="line">       listView.setLayoutParams(params);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>在设置完adapter后调用下这个方法即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyAdapter adapter = new MyAdapter();</span><br><span class="line">listview.setAdapter(adapter);</span><br><span class="line">setListViewHeightBasedOnChildren(listview);</span><br></pre></td></tr></table></figure>
-<p>显示效果如下：<br><img src="http://img.blog.csdn.net/20160624130301476" alt="这里写图片描述"><br>但是这个方法也有个缺点，就是ScrollView里面必须是LinearLayout，如果不是就没有效果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;ScrollView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:scrollbars=&quot;none&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;ListView</span><br><span class="line">                android:id=&quot;@+id/listview&quot;</span><br><span class="line">                android:layout_width=&quot;match_parent&quot;</span><br><span class="line">                android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">                android:scrollbars=&quot;none&quot;&gt;&lt;/ListView&gt;</span><br><span class="line">        &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;/ScrollView&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>第二种方法：就是自定义一个ListView重写onMeasure方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.sy.mylistview;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.util.AttributeSet;</span><br><span class="line">import android.widget.ListView;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by SY on 2016/6/15.</span><br><span class="line"> */</span><br><span class="line">public class MyListView extends ListView &#123;</span><br><span class="line">    public MyListView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public MyListView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public MyListView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">	    //重新设置高度</span><br><span class="line">        heightMeasureSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE &gt;&gt; 2, MeasureSpec.AT_MOST);</span><br><span class="line">        super.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>　　 MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE &gt;&gt; 2, MeasureSpec.AT_MOST);这个方法就是根据传入的大小和模式生成一个MeasureSpec类型的32位int值。用两位来表示模式，剩下30位表示大小。 所以传入的Integer.MAX_VALUE &gt;&gt; 2就是30位的最大值，模式是MeasureSpec.AT_MOST即表示子视图最多只能是specSize中指定的大小，最大不超过这个大小。关于onMeasure方法的详解可以看<a href="http://blog.csdn.net/guolin_blog/article/details/16330267" target="_blank" rel="noopener">http://blog.csdn.net/guolin_blog/article/details/16330267</a>来理解。<br>　　 最后只要把原来的ListView换成自定义的ListView就可以了，一样可以正常显示了。
+<pre><code>public static void setListViewHeightBasedOnChildren(ListView listView) {
+//获得adapter
+    MyAdapter adapter = (MyAdapter) listView.getAdapter();
+    if (adapter == null) {
+        return;
+    }
+
+    int totalHeight = 0;
+    for (int i = 0; i &lt; adapter.getCount(); i++) {
+        View listItem = adapter.getView(i, null, listView);
+        listItem.measure(0, 0);
+        //计算总高度
+        totalHeight += listItem.getMeasuredHeight();
+    }
+
+    ViewGroup.LayoutParams params = listView.getLayoutParams();
+    //计算分割线高度
+    params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+    //给listview设置高度
+    listView.setLayoutParams(params);
+}
+</code></pre><p>在设置完adapter后调用下这个方法即可。</p>
+<pre><code>MyAdapter adapter = new MyAdapter();
+listview.setAdapter(adapter);
+setListViewHeightBasedOnChildren(listview);
+</code></pre><p><code>`</code><br>显示效果如下：<br><img src="http://img.blog.csdn.net/20160624130301476" alt="这里写图片描述"><br>但是这个方法也有个缺点，就是ScrollView里面必须是LinearLayout，如果不是就没有效果。</p>
+<pre><code>&lt;ScrollView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:scrollbars=&quot;none&quot;&gt;
+
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;&gt;
+
+        &lt;ListView
+            android:id=&quot;@+id/listview&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:scrollbars=&quot;none&quot;&gt;&lt;/ListView&gt;
+    &lt;/LinearLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre><p><strong>第二种方法：就是自定义一个ListView重写onMeasure方法</strong></p>
+<pre><code>package com.sy.mylistview;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ListView;
+
+/**
+ * Created by SY on 2016/6/15.
+ */
+public class MyListView extends ListView {
+public MyListView(Context context) {
+    super(context);
+}
+
+public MyListView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+}
+
+public MyListView(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+}
+
+@Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    //重新设置高度
+    heightMeasureSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE &gt;&gt; 2, MeasureSpec.AT_MOST);
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+}
+}
+</code></pre><p> MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE &gt;&gt; 2, MeasureSpec.AT_MOST);这个方法就是根据传入的大小和模式生成一个MeasureSpec类型的32位int值。用两位来表示模式，剩下30位表示大小。 所以传入的Integer.MAX_VALUE &gt;&gt; 2就是30位的最大值，模式是MeasureSpec.AT_MOST即表示子视图最多只能是specSize中指定的大小，最大不超过这个大小。关于onMeasure方法的详解可以看<a href="http://blog.csdn.net/guolin_blog/article/details/16330267" target="_blank" rel="noopener">http://blog.csdn.net/guolin_blog/article/details/16330267</a>来理解。</p>
+<p>　　 最后只要把原来的ListView换成自定义的ListView就可以了，一样可以正常显示了。
 　　 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ScrollView</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;com.sy.mylistview.MyListView</span><br><span class="line">        android:id=&quot;@+id/listview&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:scrollbars=&quot;none&quot;&gt;&lt;/com.sy.mylistview.MyListView&gt;</span><br><span class="line"> &lt;/ScrollView&gt;</span><br></pre></td></tr></table></figure>
-<p>　　 </p>
+<pre><code>&lt;ScrollView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;com.sy.mylistview.MyListView
+        android:id=&quot;@+id/listview&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:scrollbars=&quot;none&quot;&gt;&lt;/com.sy.mylistview.MyListView&gt;
+ &lt;/ScrollView&gt;
+</code></pre><p>　　 </p>
 
       
     </div>
@@ -330,6 +406,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -339,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/23/Log日志工具类/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/05/23/Log日志工具类/" rel="next" title="Log日志工具类">
+                <i class="fa fa-chevron-left"></i> Log日志工具类
               </a>
             
           </div>
@@ -349,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/ViewPager+Fragment实现页卡切换/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/ViewPager+Fragment实现页卡切换/" rel="prev" title="ViewPager+Fragment实现页卡切换">
+                ViewPager+Fragment实现页卡切换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -423,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -431,6 +513,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

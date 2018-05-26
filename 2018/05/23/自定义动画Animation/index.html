@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android,Android动画," />
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。 模拟电视机关闭效果动画12345678910111213141516171819202122232425262728293031323334353637383940414243444546import android.graphi">
+<meta name="description" content="创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。 模拟电视机关闭效果动画 import android.graphics.Camera; import android.graphics.Matrix; import android.view.animation.Accelerat">
+<meta name="keywords" content="Android,Android动画">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="自定义动画Animation">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/自定义动画Animation/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
-<meta property="og:description" content="创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。 模拟电视机关闭效果动画12345678910111213141516171819202122232425262728293031323334353637383940414243444546import android.graphi">
+<meta property="og:description" content="创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。 模拟电视机关闭效果动画 import android.graphics.Camera; import android.graphics.Matrix; import android.view.animation.Accelerat">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160512153201778">
-<meta property="og:updated_time" content="2018-05-23T01:36:26.137Z">
+<meta property="og:updated_time" content="2018-05-26T14:23:50.152Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
-<meta name="twitter:description" content="创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。 模拟电视机关闭效果动画12345678910111213141516171819202122232425262728293031323334353637383940414243444546import android.graphi">
+<meta name="twitter:title" content="自定义动画Animation">
+<meta name="twitter:description" content="创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。 模拟电视机关闭效果动画 import android.graphics.Camera; import android.graphics.Matrix; import android.view.animation.Accelerat">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160512153201778">
 
 
@@ -127,7 +128,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>自定义动画Animation | 一个写代码的胖子</title>
   
 
 
@@ -251,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">自定义动画Animation</h1>
         
 
         <div class="post-meta">
@@ -302,9 +303,55 @@
 
       
         <p>　　创建自定义动画非常简单，只要实现他的applyTransformation的逻辑就可以了，不过通常情况下还要覆盖父类的initialize方法来实现一些初始化工作。<br><img src="http://img.blog.csdn.net/20160512153201778" alt="这里写图片描述"></p>
-<p>模拟电视机关闭效果动画<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">import android.graphics.Camera;</span><br><span class="line">import android.graphics.Matrix;</span><br><span class="line">import android.view.animation.AccelerateInterpolator;</span><br><span class="line">import android.view.animation.Animation;</span><br><span class="line">import android.view.animation.Transformation;</span><br><span class="line"></span><br><span class="line">public class CustomTV extends Animation &#123;</span><br><span class="line"></span><br><span class="line">    private int mCenterWidth;</span><br><span class="line">    private int mCenterHeight;</span><br><span class="line">    private Camera mCamera = new Camera();</span><br><span class="line">    private float mRotateY = 0.0f;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void initialize(int width,</span><br><span class="line">                           int height,</span><br><span class="line">                           int parentWidth,</span><br><span class="line">                           int parentHeight) &#123;</span><br><span class="line"></span><br><span class="line">        super.initialize(width, height, parentWidth, parentHeight);</span><br><span class="line">        // 设置默认时长</span><br><span class="line">        setDuration(1000);</span><br><span class="line">        // 动画结束后保留状态</span><br><span class="line">        setFillAfter(true);</span><br><span class="line">        // 设置默认插值器</span><br><span class="line">        setInterpolator(new AccelerateInterpolator());</span><br><span class="line">        mCenterWidth = width / 2;</span><br><span class="line">        mCenterHeight = height / 2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 暴露接口-设置旋转角度</span><br><span class="line">    public void setRotateY(float rorateY) &#123;</span><br><span class="line">        mRotateY = rorateY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void applyTransformation(</span><br><span class="line">            float interpolatedTime,</span><br><span class="line">            Transformation t) &#123;</span><br><span class="line">        final Matrix matrix = t.getMatrix();</span><br><span class="line">        matrix.preScale(1,</span><br><span class="line">                1 - interpolatedTime,</span><br><span class="line">                mCenterWidth,</span><br><span class="line">                mCenterHeight);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　关于Interpolator 时间插值类，定义动画变换的速度。能够实现alpha/scale/translate/rotate动画的加速、减速和重复等。Interpolator类其实是一个空接口，继承自TimeInterpolator，TimeInterpolator时间插值器允许动画进行非线性运动变换，如加速和限速等，该接口中只有接口中有一个方法 float getInterpolation(float input)这个方法。传入的值是一个0.0~1.0的值，返回值可以小于0.0也可以大于1.0。</p>
-<p>AccelerateDecelerateInterpolator　　　　动画开始与结束的地方速率改变比较慢，在中间的时候加速。<br>AccelerateInterpolator　　　　　　　　　动画开始的地方速率改变比较慢，然后开始加速。<br>AnticipateInterpolator　　　　　　　　　开始的时候向后然后向前甩。<br>AnticipateOvershootInterpolator　　　　开始的时候向后然后向前甩一定值后返回最后的值。<br>BounceInterpolator　　　　　　　　　　　动画结束的时候弹起。<br>CycleInterpolator     　　　　　　　　　　　动画循环播放特定的次数，速率改变沿着正弦曲线。<br>DecelerateInterpolator 　　　　　　　　　 在动画开始的地方快然后慢。<br>LinearInterpolator     　　　　　　　　　　　以常量速率改变。<br>OvershootInterpolator     　　　　　　　　　向前甩一定值后再回到原来位置。<br>PathInterpolator         　　　　　　　　　　　　新增的，就是可以定义路径坐标，然后可以按照路径坐标来跑动；注意其坐标并不是 XY，而是单方向，也就是我可以从0~1，然后弹回0.5 然后又弹到0.7 有到0.3，直到最后时间结束。</p>
+<p>模拟电视机关闭效果动画</p>
+<pre><code>import android.graphics.Camera;
+import android.graphics.Matrix;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+
+public class CustomTV extends Animation {
+
+private int mCenterWidth;
+private int mCenterHeight;
+private Camera mCamera = new Camera();
+private float mRotateY = 0.0f;
+
+@Override
+public void initialize(int width,
+                       int height,
+                       int parentWidth,
+                       int parentHeight) {
+
+    super.initialize(width, height, parentWidth, parentHeight);
+    // 设置默认时长
+    setDuration(1000);
+    // 动画结束后保留状态
+    setFillAfter(true);
+    // 设置默认插值器
+    setInterpolator(new AccelerateInterpolator());
+    mCenterWidth = width / 2;
+    mCenterHeight = height / 2;
+}
+
+// 暴露接口-设置旋转角度
+public void setRotateY(float rorateY) {
+    mRotateY = rorateY;
+}
+
+@Override
+protected void applyTransformation(
+        float interpolatedTime,
+        Transformation t) {
+    final Matrix matrix = t.getMatrix();
+    matrix.preScale(1,
+            1 - interpolatedTime,
+            mCenterWidth,
+            mCenterHeight);
+}
+}
+</code></pre><p>　　关于Interpolator 时间插值类，定义动画变换的速度。能够实现alpha/scale/translate/rotate动画的加速、减速和重复等。Interpolator类其实是一个空接口，继承自TimeInterpolator，TimeInterpolator时间插值器允许动画进行非线性运动变换，如加速和限速等，该接口中只有接口中有一个方法 float getInterpolation(float input)这个方法。传入的值是一个0.0~1.0的值，返回值可以小于0.0也可以大于1.0。</p>
+<p>AccelerateDecelerateInterpolator　     　动画开始与结束的地方速率改变比较慢，在中间的时候加速。<br>AccelerateInterpolator　　　　　　　　　动画开始的地方速率改变比较慢，然后开始加速。<br>AnticipateInterpolator　　　　　　　　　开始的时候向后然后向前甩。<br>AnticipateOvershootInterpolator　　　　开始的时候向后然后向前甩一定值后返回最后的值。<br>BounceInterpolator　　　　　　　　　　　动画结束的时候弹起。<br>CycleInterpolator     　　　　　　　　　　　动画循环播放特定的次数，速率改变沿着正弦曲线。<br>DecelerateInterpolator 　　　　　　　　　 在动画开始的地方快然后慢。<br>LinearInterpolator     　　　　　　　　　　　以常量速率改变。<br>OvershootInterpolator     　　　　　　　　　向前甩一定值后再回到原来位置。<br>PathInterpolator         　　　　　　　　　　　　新增的，就是可以定义路径坐标，然后可以按照路径坐标来跑动；注意其坐标并不是 XY，而是单方向，也就是我可以从0~1，然后弹回0.5 然后又弹到0.7 有到0.3，直到最后时间结束。</p>
 
       
     </div>
@@ -319,6 +366,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android动画/" rel="tag"># Android动画</a>
+          
+        </div>
       
 
       
@@ -409,7 +464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -417,6 +472,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

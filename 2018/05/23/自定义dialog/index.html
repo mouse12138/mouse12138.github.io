@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162&amp;lt;?xml versio">
+<meta name="description" content="实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　 　 　　 &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;LinearLayout xmlns:android=&amp;quot;http://schemas.android.com">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="自定义dialog">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/自定义dialog/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
-<meta property="og:description" content="实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162&amp;lt;?xml versio">
+<meta property="og:description" content="实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　 　 　　 &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;LinearLayout xmlns:android=&amp;quot;http://schemas.android.com">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160510140834857">
-<meta property="og:updated_time" content="2018-05-23T01:36:57.151Z">
+<meta property="og:updated_time" content="2018-05-26T14:21:40.906Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
-<meta name="twitter:description" content="实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162&amp;lt;?xml versio">
+<meta name="twitter:title" content="自定义dialog">
+<meta name="twitter:description" content="实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　 　 　　 &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;LinearLayout xmlns:android=&amp;quot;http://schemas.android.com">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160510140834857">
 
 
@@ -127,7 +128,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>自定义dialog | 一个写代码的胖子</title>
   
 
 
@@ -251,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">自定义dialog</h1>
         
 
         <div class="post-meta">
@@ -301,13 +302,267 @@
       
 
       
-        <p>　<img src="http://img.blog.csdn.net/20160510140834857" alt="这里写图片描述"><br>　<br>　　实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。　</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:background=&quot;#00000000&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:id=&quot;@+id/dialog_content&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:background=&quot;@mipmap/dialog_bg&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/dialog_message&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_gravity=&quot;center&quot;</span><br><span class="line">            android:paddingLeft=&quot;18dp&quot;</span><br><span class="line">            android:paddingRight=&quot;18dp&quot;</span><br><span class="line">            android:text=&quot;您正在使用小米手机，是否打开自启授权以更好地使用计步功能&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;</span><br><span class="line">            android:textSize=&quot;16sp&quot; /&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:background=&quot;#00000000&quot;</span><br><span class="line">        android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">            android:id=&quot;@+id/dialog_left_btn&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:background=&quot;@mipmap/dialog_btn&quot;</span><br><span class="line">            android:text=&quot;开启&quot;</span><br><span class="line">            android:textColor=&quot;#ffffff&quot;</span><br><span class="line">            android:textSize=&quot;15sp&quot; /&gt;</span><br><span class="line">        &lt;!-- 两个按钮之间要一个分割线，我就塞了个相同的button设置不可点击，宽度设置的很小--&gt;</span><br><span class="line">        &lt;Button</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_weight=&quot;0.02&quot;</span><br><span class="line">            android:background=&quot;#FEFEFF&quot;</span><br><span class="line">            android:clickable=&quot;false&quot;</span><br><span class="line">            android:text=&quot; &quot;</span><br><span class="line">            android:textSize=&quot;15sp&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">            android:id=&quot;@+id/dialog_right_btn&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:background=&quot;@mipmap/dialog_btn&quot;</span><br><span class="line">            android:text=&quot;不开启&quot;</span><br><span class="line">            android:textColor=&quot;#ffffff&quot;</span><br><span class="line">            android:textSize=&quot;15sp&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+        <p>　实习中遇到的需要自定义没有title的dialog，这里图片是我自己乱搞的，大概查了一下百度就开始写了。先是dialog的布局。<br>　<img src="http://img.blog.csdn.net/20160510140834857" alt="这里写图片描述">
+　
+　　</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;wrap_content&quot;
+android:background=&quot;#00000000&quot;
+android:orientation=&quot;vertical&quot;&gt;
+
+&lt;LinearLayout
+    android:id=&quot;@+id/dialog_content&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;@mipmap/dialog_bg&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/dialog_message&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;center&quot;
+        android:paddingLeft=&quot;18dp&quot;
+        android:paddingRight=&quot;18dp&quot;
+        android:text=&quot;您正在使用小米手机，是否打开自启授权以更好地使用计步功能&quot;
+        android:textColor=&quot;#000000&quot;
+        android:textSize=&quot;16sp&quot; /&gt;
+&lt;/LinearLayout&gt;
+
+&lt;LinearLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:background=&quot;#00000000&quot;
+    android:orientation=&quot;horizontal&quot;&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/dialog_left_btn&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;1&quot;
+        android:background=&quot;@mipmap/dialog_btn&quot;
+        android:text=&quot;开启&quot;
+        android:textColor=&quot;#ffffff&quot;
+        android:textSize=&quot;15sp&quot; /&gt;
+    &lt;!-- 两个按钮之间要一个分割线，我就塞了个相同的button设置不可点击，宽度设置的很小--&gt;
+    &lt;Button
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;0.02&quot;
+        android:background=&quot;#FEFEFF&quot;
+        android:clickable=&quot;false&quot;
+        android:text=&quot; &quot;
+        android:textSize=&quot;15sp&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/dialog_right_btn&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;1&quot;
+        android:background=&quot;@mipmap/dialog_btn&quot;
+        android:text=&quot;不开启&quot;
+        android:textColor=&quot;#ffffff&quot;
+        android:textSize=&quot;15sp&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre><p></p>
 <p>然后是样式文件，主要用来设置dialog无title和window背景透明。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;style name=&quot;custom_dialog&quot; parent=&quot;@android:style/Theme.Dialog&quot;&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowFrame&quot;&gt;@null&lt;/item&gt;&lt;!--边框--&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowIsFloating&quot;&gt;true&lt;/item&gt;&lt;!--是否浮现在activity之上--&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowIsTranslucent&quot;&gt;false&lt;/item&gt;&lt;!--半透明--&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;&lt;!--无标题--&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowBackground&quot;&gt;@color/transparent&lt;/item&gt;&lt;!--背景透明--&gt;</span><br><span class="line">        &lt;item name=&quot;android:backgroundDimEnabled&quot;&gt;true&lt;/item&gt;&lt;!--模糊--&gt;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
-<p>CustomDialog.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">package com.sy.mydialog;</span><br><span class="line"></span><br><span class="line">import android.app.Dialog;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.DialogInterface;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.Display;</span><br><span class="line">import android.view.Gravity;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.view.Window;</span><br><span class="line">import android.view.WindowManager;</span><br><span class="line">import android.widget.Button;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by SY on 2016/5/10.</span><br><span class="line"> */</span><br><span class="line">public class CustomDialog extends Dialog &#123;</span><br><span class="line"></span><br><span class="line">    Context context;</span><br><span class="line"></span><br><span class="line">    public CustomDialog(Context context, int themeResId) &#123;</span><br><span class="line">        super(context, themeResId);</span><br><span class="line">        this.context =context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public CustomDialog(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">        this.context =context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        //设置dialog周围不可点击，返回键失效</span><br><span class="line">        this.setCancelable(false);</span><br><span class="line">        //设置dialog在窗体中的大小和位置</span><br><span class="line">        Window dialogWindow = getWindow();</span><br><span class="line">        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">        Display display = wm.getDefaultDisplay();</span><br><span class="line">        WindowManager.LayoutParams params = getWindow().getAttributes();</span><br><span class="line">        params.gravity= Gravity.CENTER;</span><br><span class="line">        params.height = (int) (display.getHeight() * 0.25);</span><br><span class="line">        params.width = (int) (display.getWidth() * 0.8);</span><br><span class="line">        dialogWindow.setAttributes(params);</span><br><span class="line"></span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class Builder &#123;</span><br><span class="line">        private Context context;</span><br><span class="line">        private String message;</span><br><span class="line">        private String positiveButtonText;</span><br><span class="line">        private String negativeButtonText;</span><br><span class="line">        private View contentView;</span><br><span class="line">        private OnClickListener positiveButtonClickListener;</span><br><span class="line">        private OnClickListener negativeButtonClickListener;</span><br><span class="line"></span><br><span class="line">        public Builder(Context context) &#123;</span><br><span class="line">            this.context = context;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Builder setMessage(String message) &#123;</span><br><span class="line">            this.message = message;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Builder setMessage(int message) &#123;</span><br><span class="line">            this.message = (String) context.getText(message);</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        public Builder setContentView(View v) &#123;</span><br><span class="line">            this.contentView = v;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Builder setPositiveButton(int positiveButtonText,</span><br><span class="line">                                         OnClickListener listener) &#123;</span><br><span class="line">            this.positiveButtonText = (String) context</span><br><span class="line">                    .getText(positiveButtonText);</span><br><span class="line">            this.positiveButtonClickListener = listener;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Builder setPositiveButton(String positiveButtonText,</span><br><span class="line">                                         OnClickListener listener) &#123;</span><br><span class="line">            this.positiveButtonText = positiveButtonText;</span><br><span class="line">            this.positiveButtonClickListener = listener;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Builder setNegativeButton(int negativeButtonText,</span><br><span class="line">                                         OnClickListener listener) &#123;</span><br><span class="line">            this.negativeButtonText = (String) context</span><br><span class="line">                    .getText(negativeButtonText);</span><br><span class="line">            this.negativeButtonClickListener = listener;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Builder setNegativeButton(String negativeButtonText,</span><br><span class="line">                                         OnClickListener listener) &#123;</span><br><span class="line">            this.negativeButtonText = negativeButtonText;</span><br><span class="line">            this.negativeButtonClickListener = listener;</span><br><span class="line">            return this;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public CustomDialog create() &#123;</span><br><span class="line">            LayoutInflater inflater = (LayoutInflater) context</span><br><span class="line">                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br><span class="line">            //实例化dialog并设置样式</span><br><span class="line">            final CustomDialog dialog = new CustomDialog(context,R.style.custom_dialog);</span><br><span class="line"></span><br><span class="line">            View layout = inflater.inflate(R.layout.theme_dialog, null);</span><br><span class="line">            dialog.addContentView(layout, new ViewGroup.LayoutParams(</span><br><span class="line">                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));</span><br><span class="line">            // 设置确定按钮</span><br><span class="line">            if (positiveButtonText != null) &#123;</span><br><span class="line">                ((Button) layout.findViewById(R.id.dialog_left_btn))</span><br><span class="line">                        .setText(positiveButtonText);</span><br><span class="line">                if (positiveButtonClickListener != null) &#123;</span><br><span class="line">                    ((Button) layout.findViewById(R.id.dialog_left_btn))</span><br><span class="line">                            .setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">                                public void onClick(View v) &#123;</span><br><span class="line">                                    positiveButtonClickListener.onClick(dialog,</span><br><span class="line">                                            DialogInterface.BUTTON_POSITIVE);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                layout.findViewById(R.id.dialog_left_btn).setVisibility(</span><br><span class="line">                        View.GONE);</span><br><span class="line">            &#125;</span><br><span class="line">            //设置取消按钮</span><br><span class="line">            if (negativeButtonText != null) &#123;</span><br><span class="line">                ((Button) layout.findViewById(R.id.dialog_right_btn))</span><br><span class="line">                        .setText(negativeButtonText);</span><br><span class="line">                if (negativeButtonClickListener != null) &#123;</span><br><span class="line">                    ((Button) layout.findViewById(R.id.dialog_right_btn))</span><br><span class="line">                            .setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">                                public void onClick(View v) &#123;</span><br><span class="line">                                    negativeButtonClickListener.onClick(dialog,</span><br><span class="line">                                            DialogInterface.BUTTON_NEGATIVE);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                layout.findViewById(R.id.dialog_right_btn).setVisibility(</span><br><span class="line">                        View.GONE);</span><br><span class="line">            &#125;</span><br><span class="line">            //设置内容textview</span><br><span class="line">            if (message != null) &#123;</span><br><span class="line">                ((TextView) layout.findViewById(R.id.dialog_message)).setText(message);</span><br><span class="line">            &#125; else if (contentView != null) &#123;</span><br><span class="line">                //设置内容布局</span><br><span class="line">                ((LinearLayout) layout.findViewById(R.id.dialog_content))</span><br><span class="line">                        .removeAllViews();</span><br><span class="line">                ((LinearLayout) layout.findViewById(R.id.dialog_content))</span><br><span class="line">                        .addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));</span><br><span class="line">            &#125;</span><br><span class="line">            dialog.setContentView(layout);</span><br><span class="line">            return dialog;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>具体使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">CustomDialog.Builder  builder = new CustomDialog.Builder(MainActivity.this);</span><br><span class="line">      builder.setMessage(&quot;我是自定义dialog的内容&quot;);</span><br><span class="line">      builder.setPositiveButton(&quot;确定&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">              //do something</span><br><span class="line">              Toast.makeText(getApplicationContext(),&quot;点击了确定&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">              dialog.dismiss();</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">              Toast.makeText(getApplicationContext(), &quot;点击了取消&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">              dialog.dismiss();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">//创建并show</span><br><span class="line">      builder.create().show();</span><br></pre></td></tr></table></figure>
+<resources><br>    <style name="custom_dialog" parent="@android:style/Theme.Dialog"><br>        <item name="android:windowFrame">@null</item><!--边框--><br>        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上--><br>        <item name="android:windowIsTranslucent">false</item><!--半透明--><br>        <item name="android:windowNoTitle">true</item><!--无标题--><br>        <item name="android:windowBackground">@color/transparent</item><!--背景透明--><br>        <item name="android:backgroundDimEnabled">true</item><!--模糊--><br>    </style><br></resources>
+
+
+<p>CustomDialog.java</p>
+<pre><code>package com.sy.mydialog;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+/**
+ * Created by SY on 2016/5/10.
+ */
+public class CustomDialog extends Dialog {
+
+Context context;
+
+public CustomDialog(Context context, int themeResId) {
+    super(context, themeResId);
+    this.context =context;
+}
+
+public CustomDialog(Context context) {
+    super(context);
+    this.context =context;
+}
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    //设置dialog周围不可点击，返回键失效
+    this.setCancelable(false);
+    //设置dialog在窗体中的大小和位置
+    Window dialogWindow = getWindow();
+    WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    Display display = wm.getDefaultDisplay();
+    WindowManager.LayoutParams params = getWindow().getAttributes();
+    params.gravity= Gravity.CENTER;
+    params.height = (int) (display.getHeight() * 0.25);
+    params.width = (int) (display.getWidth() * 0.8);
+    dialogWindow.setAttributes(params);
+
+    super.onCreate(savedInstanceState);
+}
+
+public static class Builder {
+    private Context context;
+    private String message;
+    private String positiveButtonText;
+    private String negativeButtonText;
+    private View contentView;
+    private OnClickListener positiveButtonClickListener;
+    private OnClickListener negativeButtonClickListener;
+
+    public Builder(Context context) {
+        this.context = context;
+    }
+
+    public Builder setMessage(String message) {
+        this.message = message;
+        return this;
+    }
+
+    public Builder setMessage(int message) {
+        this.message = (String) context.getText(message);
+        return this;
+    }
+
+
+    public Builder setContentView(View v) {
+        this.contentView = v;
+        return this;
+    }
+
+    public Builder setPositiveButton(int positiveButtonText,
+                                     OnClickListener listener) {
+        this.positiveButtonText = (String) context
+                .getText(positiveButtonText);
+        this.positiveButtonClickListener = listener;
+        return this;
+    }
+
+    public Builder setPositiveButton(String positiveButtonText,
+                                     OnClickListener listener) {
+        this.positiveButtonText = positiveButtonText;
+        this.positiveButtonClickListener = listener;
+        return this;
+    }
+
+    public Builder setNegativeButton(int negativeButtonText,
+                                     OnClickListener listener) {
+        this.negativeButtonText = (String) context
+                .getText(negativeButtonText);
+        this.negativeButtonClickListener = listener;
+        return this;
+    }
+
+    public Builder setNegativeButton(String negativeButtonText,
+                                     OnClickListener listener) {
+        this.negativeButtonText = negativeButtonText;
+        this.negativeButtonClickListener = listener;
+        return this;
+    }
+
+    public CustomDialog create() {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //实例化dialog并设置样式
+        final CustomDialog dialog = new CustomDialog(context,R.style.custom_dialog);
+
+        View layout = inflater.inflate(R.layout.theme_dialog, null);
+        dialog.addContentView(layout, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        // 设置确定按钮
+        if (positiveButtonText != null) {
+            ((Button) layout.findViewById(R.id.dialog_left_btn))
+                    .setText(positiveButtonText);
+            if (positiveButtonClickListener != null) {
+                ((Button) layout.findViewById(R.id.dialog_left_btn))
+                        .setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                positiveButtonClickListener.onClick(dialog,
+                                        DialogInterface.BUTTON_POSITIVE);
+                            }
+                        });
+            }
+        } else {
+            layout.findViewById(R.id.dialog_left_btn).setVisibility(
+                    View.GONE);
+        }
+        //设置取消按钮
+        if (negativeButtonText != null) {
+            ((Button) layout.findViewById(R.id.dialog_right_btn))
+                    .setText(negativeButtonText);
+            if (negativeButtonClickListener != null) {
+                ((Button) layout.findViewById(R.id.dialog_right_btn))
+                        .setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                negativeButtonClickListener.onClick(dialog,
+                                        DialogInterface.BUTTON_NEGATIVE);
+                            }
+                        });
+            }
+        } else {
+            layout.findViewById(R.id.dialog_right_btn).setVisibility(
+                    View.GONE);
+        }
+        //设置内容textview
+        if (message != null) {
+            ((TextView) layout.findViewById(R.id.dialog_message)).setText(message);
+        } else if (contentView != null) {
+            //设置内容布局
+            ((LinearLayout) layout.findViewById(R.id.dialog_content))
+                    .removeAllViews();
+            ((LinearLayout) layout.findViewById(R.id.dialog_content))
+                    .addView(contentView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+        dialog.setContentView(layout);
+        return dialog;
+    }
+}
+}
+</code></pre><p>具体使用：</p>
+<pre><code>CustomDialog.Builder  builder = new CustomDialog.Builder(MainActivity.this);
+builder.setMessage(&quot;我是自定义dialog的内容&quot;);
+builder.setPositiveButton(&quot;确定&quot;, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        //do something
+        Toast.makeText(getApplicationContext(),&quot;点击了确定&quot;,Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+
+    }
+});
+builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        Toast.makeText(getApplicationContext(), &quot;点击了取消&quot;, Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    }
+});
+//创建并show
+builder.create().show();
+</code></pre><p><code>`</code></p>
+
       
     </div>
     
@@ -321,6 +576,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -341,8 +602,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/23/自定义View——简单的圆点进度条/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/23/自定义View——简单的圆点进度条/" rel="prev" title="自定义简单的圆点进度条">
+                自定义简单的圆点进度条 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -415,7 +676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -423,6 +684,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

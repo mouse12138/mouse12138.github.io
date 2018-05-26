@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android,Android绘图," />
 
 
 
@@ -80,16 +80,17 @@
 
 
 <meta name="description" content="Android绘制坐标系，原点在屏幕左上角，向右为x轴正方向，向下为y轴正方向。 canvas.save(); 这个方法作用是将已经绘制的图像保存起来，让后续的操作就好像在一个新图层上操作一样。 canvas.restore(); 这个方法可以理解为合并图层的操作，作用是将save之后绘制的图像和save之前的图像进行合并。 canvas.translate(); 这个方法理解成为坐标系的平移与翻">
+<meta name="keywords" content="Android,Android绘图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
 <meta property="og:description" content="Android绘制坐标系，原点在屏幕左上角，向右为x轴正方向，向下为y轴正方向。 canvas.save(); 这个方法作用是将已经绘制的图像保存起来，让后续的操作就好像在一个新图层上操作一样。 canvas.restore(); 这个方法可以理解为合并图层的操作，作用是将save之后绘制的图像和save之前的图像进行合并。 canvas.translate(); 这个方法理解成为坐标系的平移与翻">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160426150220248">
-<meta property="og:updated_time" content="2018-05-23T01:37:36.628Z">
+<meta property="og:updated_time" content="2018-05-26T14:15:51.281Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:title" content="利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘">
 <meta name="twitter:description" content="Android绘制坐标系，原点在屏幕左上角，向右为x轴正方向，向下为y轴正方向。 canvas.save(); 这个方法作用是将已经绘制的图像保存起来，让后续的操作就好像在一个新图层上操作一样。 canvas.restore(); 这个方法可以理解为合并图层的操作，作用是将save之后绘制的图像和save之前的图像进行合并。 canvas.translate(); 这个方法理解成为坐标系的平移与翻">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160426150220248">
 
@@ -127,7 +128,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘 | 一个写代码的胖子</title>
   
 
 
@@ -251,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘</h1>
         
 
         <div class="post-meta">
@@ -327,6 +328,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android绘图/" rel="tag"># Android绘图</a>
+          
+        </div>
       
 
       
@@ -421,7 +430,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -429,6 +438,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
