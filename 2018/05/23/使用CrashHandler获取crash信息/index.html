@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="title: 使用CrashHandler获取crash信息date:  tags: [Android]####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在">
+<meta name="description" content="####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtEx">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个写代码的胖子">
+<meta property="og:title" content="使用CrashHandler获取crash信息">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/使用CrashHandler获取crash信息/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
-<meta property="og:description" content="title: 使用CrashHandler获取crash信息date:  tags: [Android]####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在">
+<meta property="og:description" content="####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtEx">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20170208224434372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170208224525264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170208224506389?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-05-26T14:17:42.580Z">
+<meta property="og:updated_time" content="2018-05-26T14:33:45.475Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
-<meta name="twitter:description" content="title: 使用CrashHandler获取crash信息date:  tags: [Android]####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在">
+<meta name="twitter:title" content="使用CrashHandler获取crash信息">
+<meta name="twitter:description" content="####1、背景和问题在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。 ####2、解决方法在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtEx">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20170208224434372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbW91c2UxMjEzOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -129,7 +130,7 @@
 
 
 
-  <title> | 一个写代码的胖子</title>
+  <title>使用CrashHandler获取crash信息 | 一个写代码的胖子</title>
   
 
 
@@ -253,7 +254,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">使用CrashHandler获取crash信息</h1>
         
 
         <div class="post-meta">
@@ -303,9 +304,7 @@
       
 
       
-        <hr>
-<p>title: 使用CrashHandler获取crash信息<br>date: </p>
-<h2 id="tags-Android"><a href="#tags-Android" class="headerlink" title="tags: [Android]"></a>tags: [Android]</h2><p>####1、背景和问题<br>在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。</p>
+        <p>####1、背景和问题<br>在项目开发时，程序crash是再常见不过的情况。crash发生时系统会杀掉正在执行的程序，显示为闪退或者是提示用户程序已经停止运行。而且，用户使用过程中发生的crash，我们开发者 是无法得知原因的，无法知道crash的原因，也就无法解决这个问题。</p>
 <p>####2、解决方法<br>在Android中提供了处理之类的方法，在Thread类中的一个方法setDefaultUncaughtExceptionHandler。<br>这个方法可以设置系统默认异常处理器。当系统发生crash时，系统会回调setDefaultUncaughtExceptionHandler的uncaughtException方法，在uncaughtException方法中就可以获取到异常信息了，然后就可以选择把信息存到sd卡，之后或者可以将信息上传到服务器。这样开发者就可以获取到crash原因，并在下一个版本中修复。</p>
 <p>####3、代码实现</p>
 <pre><code>package com.sy.crashhandlerdemo;
@@ -465,6 +464,12 @@ private void uploadExceptionToServer() {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
 
       
       
@@ -538,17 +543,8 @@ private void uploadExceptionToServer() {
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -580,7 +576,7 @@ private void uploadExceptionToServer() {
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -603,22 +599,6 @@ private void uploadExceptionToServer() {
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-Android"><span class="nav-number">1.</span> <span class="nav-text">tags: [Android]</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
