@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android,Android绘图," />
 
 
 
@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="一个写代码的胖子">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/page/2/index.html">
+<meta name="description" content="demo比较简单，背景颜色是黄色，然后在上面覆盖上自定义View。实际需求是在相机的View上盖上一层遮罩，遮罩中心镂空一个透明显示的圆形部分。这个需求一般的布局比较难以实现，如果要ui给一张素材图片又存在不同分辨率手机对图片的拉伸问题，中间的圆会变形，适配不好。所以想要用一个自定义View来实现，这样不仅不存在适配问题而且也比较简单。 效果图：  简单粗暴直接上代码： package co">
+<meta name="keywords" content="Android,Android绘图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Paint Xfermode实现镂空相机扫描界面">
+<meta property="og:url" content="http://yoursite.com/2018/05/27/Android Paint Xfermode实现镂空相机扫描界面/index.html">
 <meta property="og:site_name" content="一个写代码的胖子">
+<meta property="og:description" content="demo比较简单，背景颜色是黄色，然后在上面覆盖上自定义View。实际需求是在相机的View上盖上一层遮罩，遮罩中心镂空一个透明显示的圆形部分。这个需求一般的布局比较难以实现，如果要ui给一张素材图片又存在不同分辨率手机对图片的拉伸问题，中间的圆会变形，适配不好。所以想要用一个自定义View来实现，这样不仅不存在适配问题而且也比较简单。 效果图：  简单粗暴直接上代码： package co">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20180527211728175">
+<meta property="og:updated_time" content="2018-05-27T13:24:33.513Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个写代码的胖子">
+<meta name="twitter:title" content="Android Paint Xfermode实现镂空相机扫描界面">
+<meta name="twitter:description" content="demo比较简单，背景颜色是黄色，然后在上面覆盖上自定义View。实际需求是在相机的View上盖上一层遮罩，遮罩中心镂空一个透明显示的圆形部分。这个需求一般的布局比较难以实现，如果要ui给一张素材图片又存在不同分辨率手机对图片的拉伸问题，中间的圆会变形，适配不好。所以想要用一个自定义View来实现，这样不仅不存在适配问题而且也比较简单。 效果图：  简单粗暴直接上代码： package co">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180527211728175">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/05/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/27/Android Paint Xfermode实现镂空相机扫描界面/"/>
 
 
 
 
 
-  <title>归档 | 一个写代码的胖子</title>
+  <title>Android Paint Xfermode实现镂空相机扫描界面 | 一个写代码的胖子</title>
   
 
 
@@ -140,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,410 +221,300 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 38 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/Android Paint Xfermode实现镂空相机扫描界面/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一个写代码的胖子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mouse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一个写代码的胖子">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">Android Paint Xfermode实现镂空相机扫描界面</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T21:19:10+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2018/05/27/Android Paint Xfermode实现镂空相机扫描界面/" class="leancloud_visitors" data-flag-title="Android Paint Xfermode实现镂空相机扫描界面">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘/" itemprop="url">
-              
-                <span itemprop="name">利用canvas.save()、canvas.restore()、canvas.translate()、canvas.rotate()绘制一个时钟表盘</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/接口回调/" itemprop="url">
-              
-                <span itemprop="name">接口回调</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/仿微信图片选择器/" itemprop="url">
-              
-                <span itemprop="name">仿微信图片选择器</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>   demo比较简单，背景颜色是黄色，然后在上面覆盖上自定义View。实际需求是在相机的View上盖上一层遮罩，遮罩中心镂空一个透明显示的圆形部分。这个需求一般的布局比较难以实现，如果要ui给一张素材图片又存在不同分辨率手机对图片的拉伸问题，中间的圆会变形，适配不好。所以想要用一个自定义View来实现，这样不仅不存在适配问题而且也比较简单。</p>
+<p>效果图：</p>
+<p><img src="https://img-blog.csdn.net/20180527211728175"></p>
+<p>简单粗暴直接上代码：</p>
+<pre><code>package com.xingyun.scandemo;
 
-        
-        
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
+import android.view.View;
 
-        
+/**
+ * Created by SY on 2018/5/11.
+ */
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+public class ScanView extends View {
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/第一章 计算机网络概述(笔记)/" itemprop="url">
-              
-                <span itemprop="name">第一章 计算机网络概述(笔记)</span>
-              
-            </a>
-        
-      </h2>
+private int measuredHeight;
+private int measuredWidth;
+//圆心x坐标
+private int centerX;
+//圆心y坐标
+private int centerY;
+//圆半径
+private int radius;
+//起始弧度、扫过弧度
+private float startAngle=-90, sweepAngle=180;
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
+public ScanView(Context context) {
+    super(context);
+}
 
-    </header>
-  </article>
+public ScanView(Context context, @Nullable AttributeSet attrs) {
+    super(context, attrs);
+}
+
+public ScanView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+}
 
 
+@Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    measuredHeight = getMeasuredHeight();
+    measuredWidth = getMeasuredWidth();
+}
+
+@Override
+protected void onDraw(Canvas canvas) {
+    //创建镂空圆和遮罩bitmap
+    Bitmap rectBitmap = createRectBitmap();
+    Bitmap circleBitmap = createCircleBitmap();
+
+    Paint paint = new Paint();
+    paint.setFilterBitmap(false);
+    //保存所有的标识
+    canvas.saveLayer(0, 0, measuredWidth, measuredHeight, null,
+            Canvas.MATRIX_SAVE_FLAG);
+    //画圆
+    canvas.drawBitmap(circleBitmap, 0, 0, paint);
+    //setXfermode   为SRC_OUT   只在源图像和目标图像不相交的地方绘制
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
+    //画遮罩矩形
+    canvas.drawBitmap(rectBitmap, 0, 0, paint);
+
+    //画外部圆环
+    Paint loopPaint = new Paint();
+    int strokeWidth = 20;
+    loopPaint.setStrokeWidth(strokeWidth);
+    loopPaint.setAntiAlias(true);
+    loopPaint.setStyle(Paint.Style.STROKE);
+    loopPaint.setStrokeCap(Paint.Cap.ROUND);
+
+    float distance = 40;
+    RectF oval = new RectF((int) (measuredWidth / 2f) - radius - distance, (int) (measuredHeight / 2f) - radius - distance,
+            (int) (measuredWidth / 2f) - radius - distance + 2 * (radius + distance), (int) (measuredHeight / 2f) - radius - distance + 2 * (radius + distance));
+    loopPaint.setColor(Color.GRAY);
+    //底层灰色圆
+    canvas.drawCircle(centerX, centerY, radius + distance, loopPaint);
+    //渐变色
+    LinearGradient lg = new LinearGradient(0, 0, 1000, 1000, Color.parseColor(&quot;#a5d2fe&quot;), Color.parseColor(&quot;#519aff&quot;), Shader.TileMode.MIRROR);
+    loopPaint.setShader(lg);
+    //蓝色圆弧
+    canvas.drawArc(oval, startAngle, sweepAngle, false, loopPaint);
+    startAngle = (startAngle + 1) % 360;
+    //重绘
+    invalidate();
+}
+
+
+/**
+ * 创建镂空层圆形形状
+ */
+private Bitmap createCircleBitmap() {
+    Bitmap bm = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(bm);
+    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paint.setColor(Color.WHITE);
+    centerX = (int) (measuredWidth / 2f);
+    centerY = (int) (measuredHeight / 2f);
+    radius = measuredWidth / 3;
+    canvas.drawCircle(centerX, centerY, radius, paint);
+    return bm;
+}
+
+/**
+ * 创建遮罩层形状
+ */
+private Bitmap createRectBitmap() {
+    Bitmap bm = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(bm);
+    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    paint.setColor(Color.WHITE);
+    canvas.drawRect(new RectF(0, 0, measuredWidth, measuredHeight), paint);
+    return bm;
+}
+</code></pre><p>}<br>Activity里添加：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot;
+android:background=&quot;@color/yellow&quot;
+tools:context=&quot;com.xingyun.scandemo.MainActivity&quot;&gt;
+
+&lt;com.xingyun.scandemo.ScanView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; /&gt;
+</code></pre><p><br>直接用FrameLayout将自定义的View覆盖在其他View上面即可。</p>
+<p>代码很简单，就是在onMeasure方法里获取了宽高，然后onDraw方法里通过createCircleBitmap和createRectBitmap方法获得遮罩矩形和中间圆形的bitmap，再分别绘制这两个bitmap，将画笔Xfermode设置为PorterDuff.Mode.SRC_OUT，表示只在源图像和目标图像不相交的地方绘制。最后在圆的外面绘制了一个圆弧，并且不断修改起始弧度再次绘制，从而实现旋转的动画。关于Paint的Xfermode的属性可以看下图：</p>
+<p>具体可以参考文章<a href="https://www.cnblogs.com/libertycode/p/6290497.html。" target="_blank" rel="noopener">https://www.cnblogs.com/libertycode/p/6290497.html。</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/第二章  物理层(笔记)/" itemprop="url">
-              
-                <span itemprop="name">第二章  物理层(笔记)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/报错Binary XML file line #  Error inflating class/" itemprop="url">
-              
-                <span itemprop="name">报错Binary XML file line</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/ViewPager+Fragment实现页卡切换/" itemprop="url">
-              
-                <span itemprop="name">ViewPager+Fragment实现页卡切换</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/ScrollView嵌套ListView冲突高度显示不全问题/" itemprop="url">
-              
-                <span itemprop="name">ScrollView嵌套ListView冲突高度显示不全问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/Log日志工具类/" itemprop="url">
-              
-                <span itemprop="name">Log日志工具类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/23/ListView使用技巧/" itemprop="url">
-              
-                <span itemprop="name">ListView使用技巧</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-23T21:27:46+08:00"
-              content="2018-05-23" >
-          05-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Android绘图/" rel="tag"># Android绘图</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/27/贝塞尔曲线绘制波浪/" rel="next" title="贝赛尔曲线绘制波浪">
+                <i class="fa fa-chevron-left"></i> 贝赛尔曲线绘制波浪
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/05/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/05/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/05/page/3/">3</a><a class="page-number" href="/archives/2018/05/page/4/">4</a><a class="extend next" rel="next" href="/archives/2018/05/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -625,6 +522,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -841,6 +742,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
